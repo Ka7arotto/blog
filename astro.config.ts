@@ -66,6 +66,9 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
+         shikiConfig: {
+      theme: 'github-dark',  // 或者 'dracula', 'nord' 等
+    },
 		processor: satteri({
 			features: { directive: true },
 			mdastPlugins: [
