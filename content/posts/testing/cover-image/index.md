@@ -8,3 +8,5 @@ coverImage:
   alt: "Astro build wallpaper"
 tags: ["test", "image"]
 ---
+
+<Image src="./testing/cover-image/cover.png" alt="描述" width={800} height={600} />
