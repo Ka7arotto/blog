@@ -1,0 +1,102 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link [ref=e4] [cursor=pointer]:
+      - /url: /
+      - heading "Cain's Blog" [level=1] [ref=e6]
+    - list [ref=e8]:
+      - text: 
+      - listitem [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=e11]:
+        - link "About" [ref=e12] [cursor=pointer]:
+          - /url: /about/
+      - listitem [ref=e13]:
+        - link "Writing" [ref=e14] [cursor=pointer]:
+          - /url: /archives/
+      - listitem [ref=e15]:
+        - link "links" [ref=e16] [cursor=pointer]:
+          - /url: /links/
+      - listitem [ref=e17]:
+        - link "Search" [ref=e18] [cursor=pointer]:
+          - /url: /search/
+  - article [ref=e19]:
+    - generic [ref=e20]:
+      - paragraph [ref=e21]:
+        - text: 🙋‍♂️ Greetings to you. I’m Zhanbo Ye(叶湛博) from China.But I prefer to be called
+        - strong [ref=e22]:
+          - text: Cain
+          - emphasis [ref=e23]: "[keɪn]"
+        - text: ", what name I found in the Bible."
+      - heading "“ 말보다는 행동이지 ”“ 말보다는 행동이지 ”" [level=1] [ref=e24]:
+        - link "“ 말보다는 행동이지 ”":
+          - /url: "#“-말보다는-행동이지-”"
+        - text: “ 말보다는 행동이지 ”
+      - heading "# CTF Players, ML Researcher,CTF Players, ML Researcher," [level=2] [ref=e25]:
+        - text: "#"
+        - link "CTF Players, ML Researcher,":
+          - /url: "#CTF-Players-ML-Researcher"
+        - text: CTF Players, ML Researcher,
+      - heading "EducationEducation" [level=3] [ref=e26]:
+        - link "Education":
+          - /url: "#Education"
+        - text: Education
+      - list [ref=e27]:
+        - listitem [ref=e28]: Bachelor’s Degree, School of Information Science and Technology, Northwest University (2021 - 2024)
+      - heading "CTFCTF" [level=3] [ref=e29]:
+        - link "CTF":
+          - /url: "#CTF"
+        - text: CTF
+      - list [ref=e30]:
+        - listitem [ref=e31]:
+          - text: Co-Founder and currentyly captain of
+          - link "N0wayBack" [ref=e32] [cursor=pointer]:
+            - /url: https://n0wayback.net/
+        - listitem [ref=e33]:
+          - text: And also I play Misc/AI for
+          - link "r3kapig" [ref=e34] [cursor=pointer]:
+            - /url: https://r3kapig.com/
+          - text: .
+        - listitem [ref=e35]: Previously the captain of NWU0SEC at Northwest University.
+      - heading "ProfessionProfession" [level=3] [ref=e36]:
+        - link "Profession":
+          - /url: "#Profession"
+        - text: Profession
+      - list [ref=e37]:
+        - listitem [ref=e38]:
+          - text: Working in
+          - emphasis [ref=e39]:
+            - strong [ref=e40]: MoonShotAI ™
+          - text: Infra / Security right now.
+      - heading "HobbyHobby" [level=3] [ref=e41]:
+        - link "Hobby":
+          - /url: "#Hobby"
+        - text: Hobby
+      - list [ref=e42]:
+        - listitem [ref=e43]: Philosophy
+        - listitem [ref=e44]: cocktails
+        - listitem [ref=e45]: basketball
+        - listitem [ref=e46]: FPS Game
+        - listitem [ref=e47]: Texas Hold’em
+      - blockquote [ref=e48]:
+        - text: “
+        - paragraph [ref=e49]: 人的一生有几个意义：创造、体验和爱。但现在有一些问题得到了答案，同时这些答案又展开，带来了新的别的问题。
+  - contentinfo [ref=e50]:
+    - generic [ref=e51]: Copyright © 2026 Cain
+    - navigation [ref=e53]:
+      - list [ref=e54]:
+        - listitem [ref=e55]:
+          - link "Home" [ref=e56] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e57]:
+          - link "About" [ref=e58] [cursor=pointer]:
+            - /url: /about/
+        - listitem [ref=e59]:
+          - link "Writing" [ref=e60] [cursor=pointer]:
+            - /url: /archives/
+        - listitem [ref=e61]:
+          - link "links" [ref=e62] [cursor=pointer]:
+            - /url: /links/
+        - listitem [ref=e63]:
+          - link "Search" [ref=e64] [cursor=pointer]:
+            - /url: /search/

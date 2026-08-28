@@ -14,7 +14,6 @@ import {
 	satteriAutolinkHeadingsPlugin,
 	satteriExternalLinksPlugin,
 	satteriFootnoteLabelPlugin,
-	satteriReadingTimePlugin,
 	satteriUnwrapImagesPlugin,
 } from "./src/plugins/satteri";
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
@@ -73,7 +72,6 @@ export default defineConfig({
 			features: { directive: true },
 			mdastPlugins: [
 				satteriUnwrapImagesPlugin(),
-				satteriReadingTimePlugin(),
 				satteriGithubCardPlugin(),
 				satteriAdmonitionsPlugin(),
 			],

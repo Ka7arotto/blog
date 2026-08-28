@@ -2,35 +2,94 @@
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
+	description: "About goku, a CTF player and master's student at Wuhan University",
 	title: "About",
 };
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
+<PageLayout headerClass="mb-[74px]" meta={meta}>
 	<div class="prose prose-sm prose-cactus max-w-none">
+		<blockquote class="about-quote text-quote">
+			<p>知者行之始，行者知之成</p>
+		</blockquote>
+
+		<h2 class="text-accent">Introduction</h2>
 		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
-		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
+			CTF player at <a
+				class="cactus-link"
+				href="https://github.com/WHU-CTF-Club/"
 				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
+				target="_blank">WHU-DAWN</a
+			> and <a class="cactus-link" href="https://nepnep.team/about" rel="noreferrer" target="_blank"
+				>NepNep</a
+			>.
+		</p>
+		<p>Focus on Web Security, AI Security, and AI4Sec</p>
+
+		<h2 class="text-accent">Experience</h2>
+		<ul class="not-prose space-y-4" role="list">
+			<li class="grid gap-1 sm:grid-cols-[10rem_1fr]">
+				<span class="text-muted min-w-30 font-semibold">May 2026 – Aug 2026</span>
+				<div>Security Engineer at ByteDance</div>
+			</li>
+			<li class="grid gap-1 sm:grid-cols-[10rem_1fr]">
+				<span class="text-muted min-w-30 font-semibold">May 2025 – Sep 2025</span>
+				<div>Security Engineer at AntGroup</div>
+			</li>
+		</ul>
+
+		<h2 class="text-accent">Education</h2>
+		<ul class="not-prose space-y-4" role="list">
+			<li class="grid gap-1 sm:grid-cols-[10rem_1fr]">
+				<span class="text-muted min-w-30 font-semibold">Sep 2026 – Present</span>
+				<div>Master's student at Wuhan University</div>
+			</li>
+			<li class="grid gap-1 sm:grid-cols-[10rem_1fr]">
+				<span class="text-muted min-w-30 font-semibold">Sep 2022 – Jun 2026</span>
+				<div>Undergraduate student at Wuhan University</div>
+			</li>
+		</ul>
+
+		<h2 class="text-accent">Contacts</h2>
+		<p>
+			Email: <a class="cactus-link" href="mailto:ka7arotto@outlook.com">ka7arotto@outlook.com</a>
+		</p>
+		<p>
+			GitHub: <a
+				class="cactus-link"
+				href="https://github.com/Ka7arotto"
+				rel="noreferrer"
+				target="_blank">https://github.com/Ka7arotto</a
+			>
 		</p>
 	</div>
 </PageLayout>
+
+<style>
+	.about-quote {
+		margin: 1rem 10px;
+		padding: 0.5em 10px;
+		background: inherit;
+		font-weight: 700;
+		font-style: normal;
+		quotes: "“" "”" "‘" "’";
+	}
+
+	.about-quote p {
+		margin: 0;
+	}
+
+	.about-quote::before {
+		margin-right: 0.25em;
+		color: var(--color-quote);
+		content: "“";
+		vertical-align: -0.4em;
+		font-size: 2em;
+		line-height: 0.1em;
+	}
+
+	.about-quote p::before,
+	.about-quote p::after {
+		content: none;
+	}
+</style>

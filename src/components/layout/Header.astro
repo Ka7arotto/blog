@@ -3,10 +3,20 @@ import Search from "@/components/Search.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
 import { menuLinks } from "@/site.config";
 import { siteConfig } from "../../site.config";
+
+interface Props {
+	class?: string | undefined;
+}
+
+const { class: className } = Astro.props;
 ---
 
 <header
-	class:list={["group relative mb-28 flex items-center", siteConfig.showLogo && "sm:ps-18"]}
+	class:list={[
+		"group relative flex items-center",
+		className ?? "mb-28",
+		siteConfig.showLogo && "sm:ps-18",
+	]}
 	id="main-header"
 >
 	<div class="flex sm:flex-col sm:items-start">

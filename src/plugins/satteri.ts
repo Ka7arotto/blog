@@ -1,6 +1,4 @@
-import type { Image, Nodes, Parents } from "mdast";
-import { toString as mdastToString } from "mdast-util-to-string";
-import getReadingTime from "reading-time";
+import type { Image } from "mdast";
 import type { HastPluginDefinition, MdastPluginDefinition } from "satteri";
 
 export function satteriAutolinkHeadingsPlugin(): HastPluginDefinition {
@@ -24,31 +22,6 @@ export function satteriAutolinkHeadingsPlugin(): HastPluginDefinition {
 				};
 			},
 		},
-	};
-}
-
-export function satteriReadingTimePlugin(): () => MdastPluginDefinition {
-	return () => {
-		let done = false;
-		return {
-			name: "cactus-reading-time",
-			text(node, ctx) {
-				if (done) return;
-
-				let root: Readonly<Nodes> = node;
-				let parent: Readonly<Parents> | undefined = ctx.parent(root);
-				while (parent) {
-					root = parent;
-					parent = ctx.parent(root);
-				}
-
-				done = true;
-				const textOnPage = mdastToString(root);
-				const readingTime = getReadingTime(textOnPage);
-
-				ctx.data.astro!.frontmatter.readingTime = readingTime.text;
-			},
-		};
 	};
 }
 
