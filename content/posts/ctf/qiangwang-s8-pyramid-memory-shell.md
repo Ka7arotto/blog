@@ -1,5 +1,5 @@
 ---
-title: "强网杯S8决赛Pyramid框架下内存马的分析构造"
+title: "强网杯 S8 决赛：Pyramid 内存马的分析与构造"
 description: "记录强网杯 S8 决赛 Pyramid 框架下通过 RSA 签名伪造进入命令执行并构造内存马的过程。"
 publishDate: "10 Dec 2024"
 tags: ["CTF"]
@@ -39,7 +39,9 @@ def system_test(request):
 1. 伪造一个解码结果为 `username=admin` 的有效 Token
 2. 利用 `/api/test` 的代码执行能力，在进程内注册一个新的 Pyramid 路由
 
-## 2. RS 签名伪造
+## 2. RS 模式下的 RSA 签名伪造
+
+题目中的 `RS` 是 Token 第三个字段使用的算法名称；实际签名密钥对和验签过程基于 RSA。下文用“RS 模式”指题目协议，用“RSA”指底层公钥签名机制。
 
 ### 2.1 Token 的组成
 

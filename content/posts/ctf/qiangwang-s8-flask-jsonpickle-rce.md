@@ -1,13 +1,13 @@
 ---
-title: "强网杯S8决赛Flask Jsonpickle反序列化Safe模式下绕过RCE"
-description: "记录强网杯 S8 决赛 Flask 题中 Jsonpickle Safe 模式、Pyckle Tag 和黑名单 WAF 的分析与 RCE 绕过过程。"
+title: "强网杯 S8 决赛：Flask jsonpickle Safe 模式绕过与反序列化 RCE"
+description: "记录强网杯 S8 决赛 Flask 题中 jsonpickle Safe 模式、jsonpickle 标签和黑名单 WAF 的分析与 RCE 绕过过程。"
 publishDate: "10 Dec 2024"
 tags: ["CTF"]
 ---
 
 ## 前言
 
-最近参加了强网杯S8的决赛，本篇记录其中 Flask Web 题的 Jsonpickle 反序列化分析过程。（本文已发表收录于奇安信攻防社区：[**https://forum.butian.net/share/3974**](https://forum.butian.net/share/3974)）
+最近参加了强网杯S8的决赛，本篇记录其中 Flask Web 题的 jsonpickle 反序列化分析过程。（本文已发表收录于奇安信攻防社区：[**https://forum.butian.net/share/3974**](https://forum.butian.net/share/3974)）
 
 ## 1. Token 生成与管理员判断
 
@@ -26,7 +26,7 @@ cookie_value = base64.urlsafe_b64encode(
 ).decode()
 ```
 
-普通用户登录后，可以将 Cookie Base64 解码为类似下面的 Jsonpickle 数据：
+普通用户登录后，可以将 Cookie Base64 解码为类似下面的 jsonpickle 数据：
 
 ```json
 {"py/object": "__main__.Token", "username": "guest", "timestamp": 1733551979.8980324}
@@ -55,7 +55,7 @@ return "Invalid token"
 
 ## 2. Safe 模式与 py/reduce
 
-Jsonpickle 的 safe=True 试图限制危险对象的恢复范围，但它并不等价于把输入当作普通 JSON 处理。首先用 __reduce__ 构造一个本地测试对象：
+jsonpickle 的 safe=True 试图限制危险对象的恢复范围，但它并不等价于把输入当作普通 JSON 处理。首先用 __reduce__ 构造一个本地测试对象：
 
 ```python
 import jsonpickle
@@ -92,9 +92,9 @@ BLACKLIST = [
 ]
 ```
 
-因此，需要继续跟踪 Jsonpickle 的标签恢复流程，寻找不依赖被过滤标签的构造方式。
+因此，需要继续跟踪 jsonpickle 的标签恢复流程，寻找不依赖被过滤标签的构造方式。
 
-## 3. 跟踪 Jsonpickle 的恢复流程
+## 3. 跟踪 jsonpickle 的恢复流程
 
 ### 3.1 _restore
 
@@ -109,13 +109,13 @@ def _restore(self, obj, reset=False):
     return restore(obj)
 ```
 
-![Jsonpickle 的对象恢复入口](./image/qiangwang-s8/12-jsonpickle-restore.png)
+![jsonpickle 的对象恢复入口](./image/qiangwang-s8/12-jsonpickle-restore.png)
 
 ### 3.2 _restore_tags
 
 _restore_tags 会识别字典中的特殊键，例如 py/object、py/function、py/type 和 py/newargsex，再调用对应的恢复函数：
 
-![Jsonpickle 的标签恢复分发](./image/qiangwang-s8/13-jsonpickle-restore-tags.png)
+![jsonpickle 的标签恢复分发](./image/qiangwang-s8/13-jsonpickle-restore-tags.png)
 
 py/reduce 的处理大致是先递归恢复函数和参数，再调用恢复后的对象：
 
@@ -133,9 +133,9 @@ py/function 会根据全限定名加载函数：
 
 ![恢复函数后的命令执行](./image/qiangwang-s8/16-jsonpickle-command-execution.png)
 
-## 4. 常见 Pyckle Tag
+## 4. 常见 jsonpickle 标签
 
-Pyckle Tag 是 Jsonpickle 用来描述 Python 对象和特殊数据结构的保留字段。它们本质上是 JSON 对象中的键，Unpickler 会根据这些键决定如何创建对象。
+jsonpickle 标签是 jsonpickle 用来描述 Python 对象和特殊数据结构的保留字段。它们本质上是 JSON 对象中的键，Unpickler 会根据这些键决定如何创建对象。
 
 | 标签 | 作用 | 本题中的关注点 |
 | --- | --- | --- |
@@ -153,7 +153,7 @@ Pyckle Tag 是 Jsonpickle 用来描述 Python 对象和特殊数据结构的保�
 
 ### 5.1 py/object 加载类
 
-普通对象恢复也会调用 _restore_object_instance。当对象带有 py/newargsex 时，Jsonpickle 会将它拆成 args 和 kwargs，然后执行目标类的 __new__：
+普通对象恢复也会调用 _restore_object_instance。当对象带有 py/newargsex 时，jsonpickle 会将它拆成 args 和 kwargs，然后执行目标类的 __new__：
 
 ```python
 if has_tag(obj, tags.NEWARGSEX):
@@ -196,7 +196,7 @@ def _restore_type(self, obj):
 
 ## 6. 将命令结果写入 Token.username
 
-题目没有稳定的命令回显，因此把命令执行函数放到 username 字段。Jsonpickle 先恢复外层的 Token，再把 username 的嵌套对象恢复成函数返回值；/home 会把这个返回值放进响应：
+题目没有稳定的命令回显，因此把命令执行函数放到 username 字段。jsonpickle 先恢复外层的 Token，再把 username 的嵌套对象恢复成函数返回值；/home 会把这个返回值放进响应：
 
 ```json
 {
@@ -279,10 +279,10 @@ print(response.text)
 
 这道题的利用过程可以概括为：
 
-1. 从登录 Cookie 中识别 Jsonpickle 的对象结构
+1. 从登录 Cookie 中识别 jsonpickle 的对象结构
 2. 发现 safe=True 仍然会参与特殊标签恢复
 3. 跟踪 _restore、_restore_tags 和对象构造流程
 4. 用 py/object、py/newargsex 和 py/set 绕过 py/function、py/reduce、py/tuple 的过滤
 5. 将命令执行结果放入 Token.username，利用 /home 完成回显
 
-真正的突破点是把 WAF 的“标签过滤”转化为对 Jsonpickle 恢复机制的分析：只要仍有一条路径能够加载可调用对象并控制构造参数，反序列化链就没有被切断。
+真正的突破点是把 WAF 的“标签过滤”转化为对 jsonpickle 恢复机制的分析：只要仍有一条路径能够加载可调用对象并控制构造参数，反序列化链就没有被切断。

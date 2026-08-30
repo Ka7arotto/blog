@@ -1,13 +1,11 @@
 ---
-title: "Claude code:Using LLMs to secure source code"
+title: "Claude Code：Using LLMs to secure source code"
 description: "梳理 Anthropic 使用 LLM 保护源代码的六阶段方法，并从威胁建模、沙箱、漏洞发现、验证、分诊与修复角度分析其价值和局限。"
 publishDate: "27 May 2026"
 tags: ["AI4Sec", "llm"]
 ---
 
 :::important[Problem]
-Claude 团队最近分享了内部的 AI4Sec 实践经验，本文对此进行分析学习。
-
 LLM 已经能够并行阅读大型代码库并提出大量漏洞候选，但候选数量增加并不等于代码更安全。如果缺少明确的威胁模型、可复现环境、独立验证、去重定级和修复回归，安全团队得到的只会是一份越来越长的告警列表。
 
 **核心问题是：如何把 LLM 的代码理解能力接入一条可验证、可排序、可修复、可持续运行的安全工程闭环？**

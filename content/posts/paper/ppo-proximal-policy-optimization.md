@@ -1,5 +1,5 @@
 ---
-title: "PPO：Proximal Policy Optimization Algorithms"
+title: "PPO：近端策略优化的目标函数与训练流程"
 description: "基于 2017 年 PPO 原论文，梳理策略梯度方法、TRPO 的问题、PPO-Clip 的核心公式、训练流程、实验设计与方法局限。"
 publishDate: "10 Sep 2025"
 tags: ["paper", "llm"]
@@ -401,10 +401,6 @@ Atari 中的 $\alpha$ 会在训练过程中从 1 线性退火到 0，因此 clip
 
 ## Limitation
 
-原论文没有单独设置 “Limitations” 或 “Future Work” 小节，也没有在结论中列出 PPO-Clip 的额外未解决问题。下面只保留作者在正文中明确讨论、且与 PPO 设计动机直接相关的不足：
-
 - **在同一 trajectory 上重复优化普通目标缺少充分依据。** 作者指出，对普通 policy-gradient loss 做多次优化在理论上并不充分，且实验证明经常会导致 destructively large policy updates；PPO 的 clipped objective 正是为处理这一问题提出的。
 
 - **固定 KL penalty 的系数难以选取。** 作者指出，很难为不同问题，甚至同一问题不同学习阶段，选择一个始终合适的固定 $\beta$；论文实验中 KL penalty 的表现也低于 clipped surrogate objective。
-
-这篇论文最值得掌握的不是“记住 PPO 的名字”，而是理解它解决问题的方式：**先用旧策略采样，再在固定数据上多轮优化；用 probability ratio 观察新旧策略差异，用 clipping 限制过度的有利更新，最后切换到新策略重新采样。**

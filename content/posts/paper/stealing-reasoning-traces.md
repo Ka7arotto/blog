@@ -2,7 +2,7 @@
 title: "从专有 LLM API 窃取推理轨迹"
 description: "分析专有 LLM API 中加密推理块的跨会话、跨用户与跨模型重放问题，以及由此产生的推理提取、隐私泄露、越狱和隐藏提示注入风险。"
 publishDate: "10 Aug 2026"
-tags: ["paper", "Ai security"]
+tags: ["paper", "AI Security"]
 ---
 
 :::important[Problem]

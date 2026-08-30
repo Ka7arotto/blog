@@ -1,8 +1,8 @@
 ---
-title: "Agent应用中MCP的安全风险研究"
+title: "Agent 应用中的 MCP 安全风险研究"
 description: "从传输模式、信任边界、工具中毒、Rug Pull、命令注入、跨工具劫持和提示词注入等方面分析 Agent 应用中的 MCP 安全风险，并给出分层防御建议。"
 publishDate: "21 Aug 2025"
-tags: ["Ai Agent Security"]
+tags: ["AI Agent Security"]
 ---
 
 :::important[Problem]

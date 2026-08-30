@@ -1,5 +1,5 @@
 ---
-title: "RLHF：Training a Helpful and Harmless Assistant"
+title: "RLHF：Helpful and Harmless Assistant 的训练方法"
 description: "基于 Anthropic 的 RLHF 论文，梳理 helpfulness 与 harmlessness 偏好数据、Preference Modeling、PPO 训练、在线迭代、鲁棒性实验和作者明确提出的限制。"
 publishDate: "20 Aug 2025"
 tags: ["paper", "llm"]
@@ -376,8 +376,6 @@ Figure 1 中，crowdworkers 对 final online HH model 的整体偏好高于 stat
 - 论文认为少量 outlier exposure 带来的收益明显大于单纯扩大模型规模带来的收益
 
 ## Limitation
-
-以下只保留作者在 7.1 “Limitations” 及正文中明确写出的不足和未解决问题：
 
 - **honesty 仍未解决。** 论文明确表示，虽然 RLHF 提高了 TruthfulQA 等 honesty 评测，但当前结果只是触及问题表面；其他方法可能更高效、更有效。
 

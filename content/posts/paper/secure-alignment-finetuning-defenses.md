@@ -1,5 +1,5 @@
 ---
-title: "安全对齐微调：指令与数据分离防御"
+title: "安全对齐微调：从 StruQ 到 DRIP 的指令—数据分离防御"
 description: "从 StruQ 到 DRIP，理解安全对齐微调如何在输入、训练目标、位置编码和表示空间中建立指令与数据边界。"
 publishDate: "30 Aug 2026"
 tags: ["llm security"]

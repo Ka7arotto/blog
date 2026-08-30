@@ -1,5 +1,5 @@
 ---
-title: "DPO：Direct Preference Optimization"
+title: "DPO：无需显式奖励模型的直接偏好优化"
 description: "基于 DPO 原论文，梳理 RLHF 的奖励建模流程、DPO 的 reward-policy 变换、偏好损失、理论依据、实验设计与方法边界。"
 publishDate: "20 Sep 2025"
 tags: ["paper", "llm"]
@@ -447,8 +447,6 @@ DPO 不直接问模型“这个回答的绝对奖励是多少”，而是比较�
 论文指出，GPT-4 与人类的一致程度通常与人类之间的一致程度相近或更高，因此在本文的摘要实验中使用 GPT-4（C）作为主要自动评估 prompt。
 
 ## Limitation
-
-下面只保留作者在 “Limitations & Future Work” 中明确提出的问题：
 
 - **分布外泛化仍需要更全面的研究。** 论文在 CNN/DailyMail 新闻文章上给出了初步结果，显示 DPO policy 的泛化能力与 PPO-based model 相近，但作者指出还需要更系统的研究，例如考察 DPO policy 的 self-labeling 能否有效利用无标签 prompts。
 
