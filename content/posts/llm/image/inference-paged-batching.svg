@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Continuous Batching 与分页式 KV Cache</title>
+  <desc id="desc">调度器在解码轮次之间动态加入和移除请求，KV Cache Manager 使用固定大小的物理块分散保存不同请求的缓存。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .section { font: 700 28px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .sub { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .label { font: 700 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .light { font: 700 16px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: white; text-anchor: middle; dominant-baseline: middle; }
+      .footer { font: 600 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f766e; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .map { stroke: #0284c7; stroke-width: 3; stroke-dasharray: 8 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="70" class="title" text-anchor="middle">Continuous Batching + Paged KV Cache</text>
+  <text x="800" y="108" class="subtitle" text-anchor="middle">动态调度计算位置，分页管理显存空间</text>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="160" width="335" height="300" rx="24" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <rect x="55" y="160" width="335" height="14" rx="7" fill="#0f766e"/>
+    <text x="88" y="220" class="section">请求队列</text>
+    <text x="88" y="253" class="sub">长度和到达时间各不相同</text>
+    <rect x="88" y="286" width="268" height="48" rx="12" fill="#ccfbf1"/><text x="222" y="310" class="label">请求 A · 长输出</text>
+    <rect x="88" y="348" width="215" height="48" rx="12" fill="#ede9fe"/><text x="195" y="372" class="label">请求 B · 短输出</text>
+    <rect x="88" y="410" width="245" height="48" rx="12" fill="#fef3c7"/><text x="210" y="434" class="label">请求 C · 等待中</text>
+  </g>
+
+  <path class="flow" d="M390 310 H455"/>
+
+  <g filter="url(#shadow)">
+    <rect x="455" y="160" width="315" height="300" rx="24" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="455" y="160" width="315" height="14" rx="7" fill="#7c3aed"/>
+    <text x="488" y="220" class="section">调度器</text>
+    <text x="488" y="253" class="sub">每轮 Decode 重新组成 Batch</text>
+    <rect x="492" y="292" width="240" height="64" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="612" y="324" class="label">请求结束 → 移出</text>
+    <rect x="492" y="378" width="240" height="64" rx="14" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="612" y="410" class="label">新请求 → 补入空位</text>
+  </g>
+
+  <path class="flow" d="M770 310 H835"/>
+
+  <g filter="url(#shadow)">
+    <rect x="835" y="160" width="710" height="300" rx="24" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="835" y="160" width="710" height="14" rx="7" fill="#d97706"/>
+    <text x="868" y="220" class="section">活跃 Batch</text>
+    <text x="868" y="253" class="sub">不同请求共享一次 GPU Decode 计算</text>
+    <text x="890" y="304" class="sub">轮次 1</text>
+    <rect x="980" y="278" width="126" height="54" rx="12" fill="#0f766e"/><text x="1043" y="305" class="light">请求 A</text>
+    <rect x="1122" y="278" width="126" height="54" rx="12" fill="#7c3aed"/><text x="1185" y="305" class="light">请求 B</text>
+    <rect x="1264" y="278" width="126" height="54" rx="12" fill="#cbd5e1"/><text x="1327" y="305" class="label">空位</text>
+    <text x="890" y="382" class="sub">轮次 2</text>
+    <rect x="980" y="356" width="126" height="54" rx="12" fill="#0f766e"/><text x="1043" y="383" class="light">请求 A</text>
+    <rect x="1122" y="356" width="126" height="54" rx="12" fill="#cbd5e1"/><text x="1185" y="383" class="label">B 完成</text>
+    <rect x="1264" y="356" width="126" height="54" rx="12" fill="#d97706"/><text x="1327" y="383" class="light">请求 C</text>
+    <text x="1413" y="304" class="sub">生成 1 token</text>
+    <text x="1413" y="382" class="sub">生成 1 token</text>
+  </g>
+
+  <path class="flow" d="M1190 460 V515"/>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="515" width="650" height="270" rx="24" fill="#fff" stroke="#0284c7" stroke-width="3"/>
+    <rect x="55" y="515" width="650" height="14" rx="7" fill="#0284c7"/>
+    <text x="88" y="575" class="section">逻辑 KV Cache</text>
+    <text x="88" y="608" class="sub">每个请求看起来仍是一段连续缓存</text>
+    <text x="105" y="658" class="sub">请求 A</text>
+    <rect x="205" y="630" width="74" height="58" rx="10" fill="#0f766e"/><text x="242" y="659" class="light">A1</text>
+    <rect x="289" y="630" width="74" height="58" rx="10" fill="#14b8a6"/><text x="326" y="659" class="light">A2</text>
+    <rect x="373" y="630" width="74" height="58" rx="10" fill="#2dd4bf"/><text x="410" y="659" class="light">A3</text>
+    <text x="105" y="738" class="sub">请求 C</text>
+    <rect x="205" y="710" width="74" height="58" rx="10" fill="#d97706"/><text x="242" y="739" class="light">C1</text>
+    <rect x="289" y="710" width="74" height="58" rx="10" fill="#f59e0b"/><text x="326" y="739" class="light">C2</text>
+    <rect x="500" y="640" width="165" height="98" rx="16" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="582" y="675" class="label">Block Table</text>
+    <text x="582" y="710" class="label">逻辑 → 物理映射</text>
+  </g>
+
+  <path class="map" d="M705 650 H770"/>
+
+  <g filter="url(#shadow)">
+    <rect x="770" y="515" width="775" height="270" rx="24" fill="#fff" stroke="#65a30d" stroke-width="3"/>
+    <rect x="770" y="515" width="775" height="14" rx="7" fill="#65a30d"/>
+    <text x="803" y="575" class="section">GPU 显存中的物理 Block</text>
+    <text x="803" y="608" class="sub">同一请求的 Block 可以分散存放，空闲 Block 可立即复用</text>
+    <g>
+      <rect x="808" y="642" width="84" height="62" rx="10" fill="#0f766e"/><text x="850" y="673" class="light">A1</text>
+      <rect x="904" y="642" width="84" height="62" rx="10" fill="#d97706"/><text x="946" y="673" class="light">C1</text>
+      <rect x="1000" y="642" width="84" height="62" rx="10" fill="#cbd5e1"/><text x="1042" y="673" class="label">空闲</text>
+      <rect x="1096" y="642" width="84" height="62" rx="10" fill="#14b8a6"/><text x="1138" y="673" class="light">A2</text>
+      <rect x="1192" y="642" width="84" height="62" rx="10" fill="#cbd5e1"/><text x="1234" y="673" class="label">空闲</text>
+      <rect x="1288" y="642" width="84" height="62" rx="10" fill="#f59e0b"/><text x="1330" y="673" class="light">C2</text>
+      <rect x="1384" y="642" width="84" height="62" rx="10" fill="#2dd4bf"/><text x="1426" y="673" class="light">A3</text>
+    </g>
+    <text x="1158" y="750" class="sub" text-anchor="middle">无需为每个请求预留一整段连续显存</text>
+  </g>
+
+  <rect x="125" y="822" width="1350" height="56" rx="18" fill="#ccfbf1" stroke="#5eead4" stroke-width="2"/>
+  <text x="800" y="858" class="footer">Continuous Batching 复用计算位置 · PagedAttention 复用显存 Block</text>
+</svg>

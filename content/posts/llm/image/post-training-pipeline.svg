@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大语言模型后训练与对齐主流程</title>
+  <desc id="desc">基座模型依次经过指令微调、偏好或可验证奖励优化、安全与工具训练、评估迭代，成为可用协作模型。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#334155"/>
+    </marker>
+    <marker id="feedback-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 48px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 22px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .step { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .detail { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .step-light { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; }
+      .detail-light { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #cbd5e1; }
+      .num { font: 700 20px Inter, sans-serif; fill: white; text-anchor: middle; dominant-baseline: middle; }
+      .footer { font: 600 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f766e; text-anchor: middle; }
+      .arrow { stroke: #334155; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .feedback { stroke: #0f766e; stroke-width: 4; stroke-dasharray: 10 10; fill: none; marker-end: url(#feedback-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="78" class="title" text-anchor="middle">Post-training &amp; Alignment</text>
+  <text x="800" y="116" class="subtitle" text-anchor="middle">从潜在能力到可靠行为的训练闭环</text>
+
+  <path class="arrow" d="M370 275 H440"/>
+  <path class="arrow" d="M760 275 H830"/>
+  <path class="arrow" d="M1150 275 H1220"/>
+  <path class="arrow" d="M1380 385 V470 H1310"/>
+  <path class="arrow" d="M1220 595 H1150"/>
+  <path class="arrow" d="M830 595 H760"/>
+  <path class="feedback" d="M600 700 V752 H210 V710"/>
+
+  <g filter="url(#shadow)">
+    <rect x="50" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <rect x="50" y="170" width="320" height="14" rx="7" fill="#0f766e"/>
+    <circle cx="94" cy="222" r="23" fill="#0f766e"/><text x="94" y="223" class="num">1</text>
+    <text x="130" y="232" class="step">Base Model</text>
+    <text x="82" y="284" class="detail">语言 · 知识 · 代码</text>
+    <text x="82" y="317" class="detail">具备能力，但行为未校准</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="440" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="440" y="170" width="320" height="14" rx="7" fill="#d97706"/>
+    <circle cx="484" cy="222" r="23" fill="#d97706"/><text x="484" y="223" class="num">2</text>
+    <text x="520" y="232" class="step">SFT</text>
+    <text x="472" y="284" class="detail">高质量指令—回答示范</text>
+    <text x="472" y="317" class="detail">建立指令响应模式</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#4f46e5" stroke-width="3"/>
+    <rect x="830" y="170" width="320" height="14" rx="7" fill="#4f46e5"/>
+    <circle cx="874" cy="222" r="23" fill="#4f46e5"/><text x="874" y="223" class="num">3</text>
+    <text x="910" y="232" class="step">偏好数据</text>
+    <text x="862" y="284" class="detail">Chosen / Rejected</text>
+    <text x="862" y="317" class="detail">把“更好”转成训练信号</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#dc2626" stroke-width="3"/>
+    <rect x="1220" y="170" width="320" height="14" rx="7" fill="#dc2626"/>
+    <circle cx="1264" cy="222" r="23" fill="#dc2626"/><text x="1264" y="223" class="num">4</text>
+    <text x="1300" y="232" class="step">策略优化</text>
+    <text x="1252" y="284" class="detail">RLHF · DPO · RLVR</text>
+    <text x="1252" y="317" class="detail">偏好、正确性与任务奖励</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="1220" y="490" width="320" height="14" rx="7" fill="#7c3aed"/>
+    <circle cx="1264" cy="542" r="23" fill="#7c3aed"/><text x="1264" y="543" class="num">5</text>
+    <text x="1300" y="552" class="step">安全与工具</text>
+    <text x="1252" y="604" class="detail">风险边界 · Function Calling</text>
+    <text x="1252" y="637" class="detail">多步轨迹 · 失败恢复</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#0284c7" stroke-width="3"/>
+    <rect x="830" y="490" width="320" height="14" rx="7" fill="#0284c7"/>
+    <circle cx="874" cy="542" r="23" fill="#0284c7"/><text x="874" y="543" class="num">6</text>
+    <text x="910" y="552" class="step">评估与红队</text>
+    <text x="862" y="604" class="detail">能力 · 偏好 · 安全</text>
+    <text x="862" y="637" class="detail">真实任务成功率</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="440" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#65a30d" stroke-width="3"/>
+    <rect x="440" y="490" width="320" height="14" rx="7" fill="#65a30d"/>
+    <circle cx="484" cy="542" r="23" fill="#65a30d"/><text x="484" y="543" class="num">7</text>
+    <text x="520" y="552" class="step">数据迭代</text>
+    <text x="472" y="604" class="detail">收集失败 · 构造样本</text>
+    <text x="472" y="637" class="detail">回归测试 · 再训练</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="50" y="490" width="320" height="210" rx="22" fill="#0f172a" stroke="#0f172a" stroke-width="3"/>
+    <rect x="50" y="490" width="320" height="14" rx="7" fill="#14b8a6"/>
+    <circle cx="94" cy="542" r="23" fill="#14b8a6"/><text x="94" y="543" class="num">8</text>
+    <text x="130" y="552" class="step-light">协作模型</text>
+    <text x="82" y="604" class="detail-light">Instruct · Reasoning · Agent</text>
+    <text x="82" y="637" class="detail-light">可交互、可约束、可执行</text>
+  </g>
+
+  <rect x="125" y="800" width="1350" height="62" rx="18" fill="#ccfbf1" stroke="#5eead4" stroke-width="2"/>
+  <text x="800" y="840" class="footer">示范决定行为起点 · 反馈决定优化方向 · 评估决定改进是否真实</text>
+</svg>

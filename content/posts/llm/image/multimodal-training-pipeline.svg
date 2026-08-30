@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">多模态能力训练流程</title>
+  <desc id="desc">多模态训练从图文、语音、视频和界面轨迹数据开始，依次经过样本治理、模态对齐、指令微调、定位映射和安全校验，最终形成可以理解、推理、行动并引用证据的多模态能力。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef7f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .source-title { font: 700 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .source-sub { font: 400 14px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; text-anchor: middle; }
+      .step-title { font: 700 23px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .step-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .num { font: 700 17px Inter, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+      .goal { font: 700 23px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="68" class="title" text-anchor="middle">Multimodal Training Pipeline</text>
+  <text x="800" y="106" class="subtitle" text-anchor="middle">架构只负责接入信号，可靠能力来自正确配对的数据和逐层训练</text>
+
+  <text x="70" y="160" class="subtitle">跨模态训练样本</text>
+  <g filter="url(#shadow)">
+    <rect x="70" y="185" width="260" height="115" rx="20" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="200" y="230" class="source-title">图像 / 文档</text>
+    <text x="200" y="267" class="source-sub">Caption · 问答 · OCR · 图表</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="370" y="185" width="260" height="115" rx="20" fill="#fff" stroke="#d97706" stroke-width="2"/>
+    <text x="500" y="230" class="source-title">语音</text>
+    <text x="500" y="267" class="source-sub">转写 · 说话人 · 时间戳</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="670" y="185" width="260" height="115" rx="20" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+    <text x="800" y="230" class="source-title">视频</text>
+    <text x="800" y="267" class="source-sub">字幕 · 事件 · 时间片段</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="970" y="185" width="260" height="115" rx="20" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <text x="1100" y="230" class="source-title">UI / Agent</text>
+    <text x="1100" y="267" class="source-sub">截图 · 控件 · 操作轨迹</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1270" y="185" width="260" height="115" rx="20" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+    <text x="1400" y="230" class="source-title">安全数据</text>
+    <text x="1400" y="267" class="source-sub">拒答 · 隐私 · 不确定性</text>
+  </g>
+
+  <path class="flow" d="M800 315 V370"/>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="390" width="265" height="170" rx="22" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="95" cy="430" r="20" fill="#2563eb"/><text x="95" y="431" class="num">1</text>
+    <text x="188" y="465" class="step-title">样本治理</text>
+    <text x="188" y="505" class="step-sub">匹配 · 去重 · 授权</text>
+    <text x="188" y="533" class="step-sub">质量 · 隐私 · 元数据</text>
+  </g>
+  <path class="flow" d="M320 475 H365"/>
+  <g filter="url(#shadow)">
+    <rect x="375" y="390" width="265" height="170" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+    <circle cx="415" cy="430" r="20" fill="#7c3aed"/><text x="415" y="431" class="num">2</text>
+    <text x="508" y="465" class="step-title">模态对齐</text>
+    <text x="508" y="505" class="step-sub">对比学习 · Caption</text>
+    <text x="508" y="533" class="step-sub">图文 / 音文 / 视频事件</text>
+  </g>
+  <path class="flow" d="M640 475 H685"/>
+  <g filter="url(#shadow)">
+    <rect x="695" y="390" width="265" height="170" rx="22" fill="#fff" stroke="#d97706" stroke-width="2"/>
+    <circle cx="735" cy="430" r="20" fill="#d97706"/><text x="735" y="431" class="num">3</text>
+    <text x="828" y="465" class="step-title">指令微调</text>
+    <text x="828" y="505" class="step-sub">从描述走向任务</text>
+    <text x="828" y="533" class="step-sub">问答 · 比较 · 推理 · 操作</text>
+  </g>
+  <path class="flow" d="M960 475 H1005"/>
+  <g filter="url(#shadow)">
+    <rect x="1015" y="390" width="265" height="170" rx="22" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+    <circle cx="1055" cy="430" r="20" fill="#0f766e"/><text x="1055" y="431" class="num">4</text>
+    <text x="1148" y="465" class="step-title">Grounding</text>
+    <text x="1148" y="505" class="step-sub">区域 · 坐标 · 单元格</text>
+    <text x="1148" y="533" class="step-sub">时间片段 · 操作反馈</text>
+  </g>
+  <path class="flow" d="M1280 475 H1325"/>
+  <g filter="url(#shadow)">
+    <rect x="1335" y="390" width="210" height="170" rx="22" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="1375" cy="430" r="20" fill="#dc2626"/><text x="1375" y="431" class="num">5</text>
+    <text x="1440" y="465" class="step-title">安全校验</text>
+    <text x="1440" y="505" class="step-sub">证据 · 拒答</text>
+    <text x="1440" y="533" class="step-sub">权限 · 确认 · 审计</text>
+  </g>
+
+  <path class="flow" d="M800 575 V635"/>
+
+  <g filter="url(#shadow)">
+    <rect x="115" y="650" width="250" height="110" rx="20" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="240" y="697" class="goal">看得准</text>
+    <text x="240" y="733" class="source-sub">感知与识别</text>
+  </g>
+  <path class="flow" d="M365 705 H420"/>
+  <g filter="url(#shadow)">
+    <rect x="430" y="650" width="250" height="110" rx="20" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="555" y="697" class="goal">对得上</text>
+    <text x="555" y="733" class="source-sub">跨模态语义对齐</text>
+  </g>
+  <path class="flow" d="M680 705 H735"/>
+  <g filter="url(#shadow)">
+    <rect x="745" y="650" width="250" height="110" rx="20" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+    <text x="870" y="697" class="goal">会执行</text>
+    <text x="870" y="733" class="source-sub">理解指令与任务</text>
+  </g>
+  <path class="flow" d="M995 705 H1050"/>
+  <g filter="url(#shadow)">
+    <rect x="1060" y="650" width="250" height="110" rx="20" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+    <text x="1185" y="697" class="goal">可验证</text>
+    <text x="1185" y="733" class="source-sub">区域、时间与结果证据</text>
+  </g>
+  <path class="flow" d="M1310 705 H1365"/>
+  <g filter="url(#shadow)">
+    <rect x="1375" y="650" width="170" height="110" rx="20" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="1460" y="697" class="goal">不乱说</text>
+    <text x="1460" y="733" class="source-sub">安全与不确定性</text>
+  </g>
+
+  <rect x="180" y="825" width="1240" height="45" rx="14" fill="#ccfbf1"/>
+  <text x="800" y="854" class="goal">多模态能力来自正确的数据对应关系，而不只是更多输入接口</text>
+</svg>

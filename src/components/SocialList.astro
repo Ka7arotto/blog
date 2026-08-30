@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 /** 
 	Uses https://www.astroicon.dev/getting-started/
 	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
-	Only installed pack is: @iconify-json/mdi
+	Installed packs: @iconify-json/mdi and @iconify-json/tabler
 */
 const socialLinks: {
 	friendlyName: string;
@@ -15,29 +15,30 @@ const socialLinks: {
 	{
 		friendlyName: "GitHub",
 		link: "https://github.com/Ka7arotto",
-		name: "mdi:github",
+		name: "tabler:brand-github",
 	},
 	{
 		friendlyName: "Email",
 		link: "mailto:ka7arotto@outlook.com",
-		name: "mdi:email",
+		name: "tabler:mail",
 	},
 ];
 ---
 
-<div class="flex flex-wrap items-end gap-x-2">
+<div class="flex flex-wrap items-center gap-x-2">
 	<p>Social Links:</p>
-	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+	<ul class="flex flex-1 items-center gap-1 sm:flex-initial">
 		{
 			socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
 				<li class="flex">
 					<a
-						class="hover:text-link inline-block"
+						class="hover:text-accent focus-visible:text-accent inline-block rounded-sm p-2 opacity-90 transition-transform hover:rotate-6 focus-visible:outline-2 focus-visible:outline-offset-2 sm:p-1"
 						href={link}
 						rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
 						target="_blank"
+						title={friendlyName}
 					>
-						<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name={name} />
+						<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
 						<span class="sr-only">{friendlyName}</span>
 					</a>
 				</li>

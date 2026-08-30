@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">长上下文的四类核心瓶颈</title>
+  <desc id="desc">序列变长会导致注意力计算、KV Cache 显存、位置外推和信息利用四类问题，模型需要从容纳信息逐步走向稳定回答。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .card-title { font: 700 28px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .card-sub { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .metric { font: 700 30px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; text-anchor: middle; }
+      .step { font: 700 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .step-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; text-anchor: middle; }
+      .flow { stroke: #0f766e; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="72" class="title" text-anchor="middle">Long Context：窗口变长，四类压力同时出现</text>
+  <text x="800" y="110" class="subtitle" text-anchor="middle">容量、计算、显存和信息利用必须一起扩展</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="175" width="340" height="285" rx="24" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+    <rect x="70" y="175" width="340" height="14" rx="7" fill="#2563eb"/>
+    <text x="105" y="245" class="card-title">Attention 计算</text>
+    <text x="240" y="322" class="metric" fill="#2563eb">O(n²)</text>
+    <text x="105" y="380" class="card-sub">长度扩大 10 倍</text>
+    <text x="105" y="414" class="card-sub">关系数量可能接近 100 倍</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="445" y="175" width="340" height="285" rx="24" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="445" y="175" width="340" height="14" rx="7" fill="#7c3aed"/>
+    <text x="480" y="245" class="card-title">KV Cache 显存</text>
+    <text x="615" y="322" class="metric" fill="#7c3aed">O(n × B)</text>
+    <text x="480" y="380" class="card-sub">随上下文长度线性增长</text>
+    <text x="480" y="414" class="card-sub">并发请求会继续叠加缓存</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="820" y="175" width="340" height="285" rx="24" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="820" y="175" width="340" height="14" rx="7" fill="#d97706"/>
+    <text x="855" y="245" class="card-title">位置外推</text>
+    <text x="990" y="322" class="metric" fill="#d97706">8K → 128K</text>
+    <text x="855" y="380" class="card-sub">超出训练范围后</text>
+    <text x="855" y="414" class="card-sub">远距离顺序与引用可能失真</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1195" y="175" width="340" height="285" rx="24" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <rect x="1195" y="175" width="340" height="14" rx="7" fill="#0f766e"/>
+    <text x="1230" y="245" class="card-title">信息利用</text>
+    <text x="1365" y="322" class="metric" fill="#0f766e">Seen ≠ Used</text>
+    <text x="1230" y="380" class="card-sub">看见不等于找到</text>
+    <text x="1230" y="414" class="card-sub">找到也不等于正确组合</text>
+  </g>
+
+  <text x="800" y="535" class="title" font-size="34" text-anchor="middle">有效长上下文的能力链</text>
+  <text x="800" y="572" class="subtitle" text-anchor="middle">最大窗口只解决第一步</text>
+
+  <g filter="url(#shadow)">
+    <rect x="105" y="640" width="225" height="125" rx="22" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="218" y="694" class="step">放得下</text>
+    <text x="218" y="729" class="step-sub">容量与位置范围</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="395" y="640" width="225" height="125" rx="22" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="508" y="694" class="step">找得到</text>
+    <text x="508" y="729" class="step-sub">远距离信息检索</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="685" y="640" width="225" height="125" rx="22" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+    <text x="798" y="694" class="step">看得全</text>
+    <text x="798" y="729" class="step-sub">结构与全局关系</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="975" y="640" width="225" height="125" rx="22" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="1088" y="694" class="step">推得对</text>
+    <text x="1088" y="729" class="step-sub">跨段证据组合</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1265" y="640" width="225" height="125" rx="22" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+    <text x="1378" y="694" class="step">答得稳</text>
+    <text x="1378" y="729" class="step-sub">可靠输出与引用</text>
+  </g>
+
+  <path class="flow" d="M330 702 H385"/>
+  <path class="flow" d="M620 702 H675"/>
+  <path class="flow" d="M910 702 H965"/>
+  <path class="flow" d="M1200 702 H1255"/>
+
+  <rect x="210" y="820" width="1180" height="48" rx="15" fill="#ccfbf1"/>
+  <text x="800" y="851" class="step">目标：以可承受的计算、显存与延迟稳定使用关键信息</text>
+</svg>

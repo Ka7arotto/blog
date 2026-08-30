@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">生产级大模型持续评测与安全闭环</title>
+  <desc id="desc">模型、提示词、知识库或工具发生变化后，系统运行版本化离线评测和安全门禁，通过后进行灰度发布与线上监控。失败样本经过归因与审核后进入回归集和安全集，再用于下一轮评测。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef7f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="loop-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .card-title { font: 700 23px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .card-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .small-title { font: 700 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .small-sub { font: 400 14px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; text-anchor: middle; }
+      .white-title { font: 700 24px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; text-anchor: middle; }
+      .white-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ccfbf1; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .loop { stroke: #0f766e; stroke-width: 4; stroke-dasharray: 10 8; fill: none; marker-end: url(#loop-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="68" class="title" text-anchor="middle">Continuous Eval &amp; Safety Lifecycle</text>
+  <text x="800" y="106" class="subtitle" text-anchor="middle">每次模型或系统变化都重新经过评测、门禁、灰度、监控和问题回流</text>
+
+  <text x="65" y="165" class="subtitle">版本化输入</text>
+  <g filter="url(#shadow)">
+    <rect x="65" y="190" width="270" height="135" rx="22" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <text x="200" y="235" class="card-title">系统变更</text>
+    <text x="200" y="273" class="card-sub">Model · Prompt · RAG</text>
+    <text x="200" y="300" class="card-sub">Tools · Policy · Runtime</text>
+  </g>
+  <path class="flow" d="M335 258 H385"/>
+
+  <g filter="url(#shadow)">
+    <rect x="395" y="175" width="310" height="165" rx="22" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="550" y="222" class="card-title">离线评测</text>
+    <text x="550" y="260" class="card-sub">Golden · Regression · Hard Cases</text>
+    <text x="550" y="288" class="card-sub">答案 · RAG · Agent · 多模态</text>
+    <text x="550" y="316" class="card-sub">保存数据、评分器与执行版本</text>
+  </g>
+  <path class="flow" d="M705 258 H755"/>
+
+  <g filter="url(#shadow)">
+    <rect x="765" y="175" width="310" height="165" rx="22" fill="#fef2f2" stroke="#dc2626" stroke-width="3"/>
+    <text x="920" y="222" class="card-title">质量与安全门禁</text>
+    <text x="920" y="260" class="card-sub">准确率 · 引用 · 越权 · 工具风险</text>
+    <text x="920" y="288" class="card-sub">延迟 · 成本 · 高风险长尾</text>
+    <text x="920" y="316" class="card-sub">未达标则阻止发布</text>
+  </g>
+  <path class="flow" d="M1075 258 H1125"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1135" y="175" width="200" height="165" rx="22" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+    <text x="1235" y="222" class="card-title">灰度发布</text>
+    <text x="1235" y="260" class="card-sub">内部 → 小流量</text>
+    <text x="1235" y="288" class="card-sub">人工 → 半自动</text>
+    <text x="1235" y="316" class="card-sub">逐步扩大范围</text>
+  </g>
+  <path class="flow" d="M1335 258 H1385"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1395" y="175" width="150" height="165" rx="22" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+    <text x="1470" y="222" class="card-title">线上监控</text>
+    <text x="1470" y="260" class="card-sub">质量 · 检索</text>
+    <text x="1470" y="288" class="card-sub">工具 · 安全</text>
+    <text x="1470" y="316" class="card-sub">延迟 · 成本</text>
+  </g>
+
+  <path class="flow" d="M1470 340 V445"/>
+  <g filter="url(#shadow)">
+    <rect x="1240" y="455" width="305" height="140" rx="22" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+    <text x="1393" y="500" class="card-title">失败事件与长尾样本</text>
+    <text x="1393" y="538" class="card-sub">错误回答 · 错误引用 · 工具失败</text>
+    <text x="1393" y="566" class="card-sub">注入 · 越权 · 敏感信息 · 用户投诉</text>
+  </g>
+  <path class="flow" d="M1240 525 H1175"/>
+
+  <g filter="url(#shadow)">
+    <rect x="825" y="455" width="340" height="140" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="995" y="500" class="card-title">失败归因与人工审核</text>
+    <text x="995" y="538" class="card-sub">模型 / 检索 / 上下文 / 工具 / 权限</text>
+    <text x="995" y="566" class="card-sub">确认事实、风险等级与修复方向</text>
+  </g>
+  <path class="flow" d="M825 525 H760"/>
+
+  <g filter="url(#shadow)">
+    <rect x="420" y="455" width="330" height="140" rx="22" fill="#ecfdf5" stroke="#0f766e" stroke-width="3"/>
+    <text x="585" y="500" class="card-title">回归集与安全集更新</text>
+    <text x="585" y="538" class="card-sub">保存复现输入、证据与期望行为</text>
+    <text x="585" y="566" class="card-sub">新增规则、边界样本和修复验证</text>
+  </g>
+  <path class="loop" d="M420 525 H215 V360 H550 V350"/>
+  <text x="250" y="502" class="small-sub">进入下一轮评测</text>
+
+  <path class="flow" d="M920 340 V445"/>
+  <text x="970" y="410" class="small-sub">门禁未通过</text>
+
+  <g filter="url(#shadow)">
+    <rect x="115" y="690" width="520" height="120" rx="22" fill="#0f766e"/>
+    <text x="375" y="735" class="white-title">安全控制贯穿每个阶段</text>
+    <text x="375" y="770" class="white-sub">身份 · 权限 · 输入 · 检索 · 工具 · 输出 · 审计</text>
+  </g>
+
+  <rect x="180" y="842" width="1240" height="42" rx="14" fill="#ccfbf1"/>
+  <text x="800" y="870" class="small-title">可靠性不是一次评测结果，而是可以持续发现退化并验证修复的工程闭环</text>
+</svg>

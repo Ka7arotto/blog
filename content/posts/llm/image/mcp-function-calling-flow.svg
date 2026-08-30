@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">Function Calling and MCP end-to-end flow</title>
+  <desc id="desc">The model expresses a tool call inside the host. The host validates and routes it through MCP clients to MCP servers, which access external systems and return results.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#f1f8f5"/>
+    </linearGradient>
+    <linearGradient id="hostFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef3ff"/>
+      <stop offset="1" stop-color="#e4edff"/>
+    </linearGradient>
+    <linearGradient id="modelFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7367f0"/>
+      <stop offset="1" stop-color="#5146c8"/>
+    </linearGradient>
+    <linearGradient id="mcpFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#42c5aa"/>
+      <stop offset="1" stop-color="#168f80"/>
+    </linearGradient>
+    <linearGradient id="externalFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffbb63"/>
+      <stop offset="1" stop-color="#ed8348"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#2c4565" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#168f80"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="920" fill="url(#background)"/>
+  <circle cx="1490" cy="85" r="220" fill="#daf4ee" opacity="0.55"/>
+  <circle cx="95" cy="845" r="220" fill="#e1e8ff" opacity="0.65"/>
+
+  <text x="95" y="86" fill="#172b4d" font-family="Inter, 'PingFang SC', sans-serif" font-size="43" font-weight="700">Function Calling × MCP：从调用意图到真实执行</text>
+  <text x="95" y="130" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="23">模型提出请求，Host 控制执行，MCP 标准化连接，Server 访问外部系统</text>
+
+  <rect x="80" y="185" width="210" height="125" rx="24" fill="#ffffff" stroke="#9aa9bc" stroke-width="3" filter="url(#shadow)"/>
+  <text x="185" y="235" text-anchor="middle" fill="#172b4d" font-family="Inter, 'PingFang SC', sans-serif" font-size="28" font-weight="700">用户目标</text>
+  <text x="185" y="274" text-anchor="middle" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="19">查询订单 ORD-001</text>
+
+  <path d="M290 247 H360" stroke="#64748b" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="380" y="165" width="600" height="560" rx="32" fill="url(#hostFill)" stroke="#7890bb" stroke-width="3" filter="url(#shadow)"/>
+  <text x="420" y="218" fill="#304b75" font-family="Inter, 'PingFang SC', sans-serif" font-size="28" font-weight="700">MCP Host · AI 应用</text>
+  <text x="420" y="250" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="18">模型、上下文、策略和多个 MCP Client 都由 Host 管理</text>
+
+  <rect x="425" y="285" width="500" height="120" rx="24" fill="url(#modelFill)"/>
+  <text x="675" y="332" text-anchor="middle" fill="#ffffff" font-family="Inter, 'PingFang SC', sans-serif" font-size="27" font-weight="700">LLM · Function Calling</text>
+  <text x="675" y="369" text-anchor="middle" fill="#f4f1ff" font-family="Inter, 'PingFang SC', sans-serif" font-size="19">query_order({ order_id: "ORD-001" })</text>
+
+  <path d="M675 405 V455" stroke="#64748b" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="425" y="475" width="500" height="105" rx="22" fill="#ffffff" stroke="#7d91af" stroke-width="3"/>
+  <text x="675" y="517" text-anchor="middle" fill="#243b5a" font-family="Inter, 'PingFang SC', sans-serif" font-size="24" font-weight="700">Host 治理层</text>
+  <text x="675" y="551" text-anchor="middle" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="18">Schema · 业务规则 · 权限 · 确认 · 审计</text>
+
+  <path d="M675 580 V620" stroke="#64748b" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="425" y="640" width="230" height="58" rx="18" fill="url(#mcpFill)"/>
+  <text x="540" y="677" text-anchor="middle" fill="#ffffff" font-family="Inter, 'PingFang SC', sans-serif" font-size="21" font-weight="700">MCP Client A</text>
+  <rect x="695" y="640" width="230" height="58" rx="18" fill="url(#mcpFill)"/>
+  <text x="810" y="677" text-anchor="middle" fill="#ffffff" font-family="Inter, 'PingFang SC', sans-serif" font-size="21" font-weight="700">MCP Client B</text>
+
+  <text x="1040" y="205" fill="#167c6d" font-family="Inter, 'PingFang SC', sans-serif" font-size="23" font-weight="700">MCP 协议</text>
+  <text x="1040" y="236" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="17">stdio / Streamable HTTP · JSON-RPC 2.0</text>
+
+  <path d="M980 345 H1038" stroke="#168f80" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <text x="1008" y="326" text-anchor="middle" fill="#168f80" font-family="Inter, 'PingFang SC', sans-serif" font-size="16" font-weight="700">调用</text>
+  <path d="M1038 390 H980" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="1008" y="418" text-anchor="middle" fill="#64748b" font-family="Inter, 'PingFang SC', sans-serif" font-size="16" font-weight="700">结果</text>
+
+  <path d="M980 669 H1038" stroke="#168f80" stroke-width="5" marker-end="url(#arrowGreen)"/>
+
+  <rect x="1060" y="275" width="250" height="205" rx="26" fill="#ffffff" stroke="#35a48f" stroke-width="3" filter="url(#shadow)"/>
+  <text x="1185" y="322" text-anchor="middle" fill="#157c6d" font-family="Inter, 'PingFang SC', sans-serif" font-size="25" font-weight="700">MCP Server A</text>
+  <rect x="1090" y="350" width="90" height="38" rx="14" fill="#e4f7f1"/>
+  <text x="1135" y="375" text-anchor="middle" fill="#157c6d" font-family="Inter, sans-serif" font-size="16" font-weight="700">Tools</text>
+  <rect x="1190" y="350" width="90" height="38" rx="14" fill="#e4f7f1"/>
+  <text x="1235" y="375" text-anchor="middle" fill="#157c6d" font-family="Inter, sans-serif" font-size="16" font-weight="700">Resources</text>
+  <rect x="1090" y="401" width="190" height="38" rx="14" fill="#e4f7f1"/>
+  <text x="1185" y="426" text-anchor="middle" fill="#157c6d" font-family="Inter, sans-serif" font-size="16" font-weight="700">Prompts</text>
+
+  <rect x="1060" y="550" width="250" height="150" rx="26" fill="#ffffff" stroke="#35a48f" stroke-width="3" filter="url(#shadow)"/>
+  <text x="1185" y="598" text-anchor="middle" fill="#157c6d" font-family="Inter, 'PingFang SC', sans-serif" font-size="25" font-weight="700">MCP Server B</text>
+  <text x="1185" y="640" text-anchor="middle" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="18">独立能力与权限范围</text>
+  <text x="1185" y="670" text-anchor="middle" fill="#60708a" font-family="Inter, 'PingFang SC', sans-serif" font-size="18">可本地，也可远程</text>
+
+  <path d="M1310 377 H1360" stroke="#64748b" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M1310 625 H1360" stroke="#64748b" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="1380" y="275" width="155" height="425" rx="28" fill="url(#externalFill)" filter="url(#shadow)"/>
+  <text x="1457" y="328" text-anchor="middle" fill="#ffffff" font-family="Inter, 'PingFang SC', sans-serif" font-size="24" font-weight="700">外部系统</text>
+  <rect x="1404" y="365" width="107" height="58" rx="17" fill="#fff8ed"/>
+  <text x="1457" y="401" text-anchor="middle" fill="#a85624" font-family="Inter, 'PingFang SC', sans-serif" font-size="18" font-weight="700">数据库</text>
+  <rect x="1404" y="450" width="107" height="58" rx="17" fill="#fff8ed"/>
+  <text x="1457" y="486" text-anchor="middle" fill="#a85624" font-family="Inter, 'PingFang SC', sans-serif" font-size="18" font-weight="700">文件 / Git</text>
+  <rect x="1404" y="535" width="107" height="58" rx="17" fill="#fff8ed"/>
+  <text x="1457" y="571" text-anchor="middle" fill="#a85624" font-family="Inter, 'PingFang SC', sans-serif" font-size="18" font-weight="700">业务 API</text>
+  <rect x="1404" y="620" width="107" height="58" rx="17" fill="#fff8ed"/>
+  <text x="1457" y="656" text-anchor="middle" fill="#a85624" font-family="Inter, 'PingFang SC', sans-serif" font-size="18" font-weight="700">浏览器</text>
+
+  <rect x="100" y="790" width="1400" height="75" rx="22" fill="#ffffff" stroke="#c5cfdd" stroke-width="2"/>
+  <circle cx="145" cy="827" r="11" fill="#5f55dc"/>
+  <text x="170" y="835" fill="#30415c" font-family="Inter, 'PingFang SC', sans-serif" font-size="20" font-weight="600">模型只提出调用意图</text>
+  <circle cx="555" cy="827" r="11" fill="#168f80"/>
+  <text x="580" y="835" fill="#30415c" font-family="Inter, 'PingFang SC', sans-serif" font-size="20" font-weight="600">MCP 负责标准连接</text>
+  <circle cx="965" cy="827" r="11" fill="#ed8348"/>
+  <text x="990" y="835" fill="#30415c" font-family="Inter, 'PingFang SC', sans-serif" font-size="20" font-weight="600">真实动作由外部系统完成</text>
+</svg>

@@ -10,6 +10,7 @@ import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 import { satteriAdmonitionsPlugin } from "./src/plugins/admonitions";
 import { satteriGithubCardPlugin } from "./src/plugins/github-cards";
+import { satteriMathPlugin } from "./src/plugins/math";
 import {
 	satteriAutolinkHeadingsPlugin,
 	satteriExternalLinksPlugin,
@@ -65,17 +66,18 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
-         shikiConfig: {
-      theme: 'github-dark',  // 或者 'dracula', 'nord' 等
-    },
+		shikiConfig: {
+			theme: "github-dark", // 或者 "dracula"、"nord" 等
+		},
 		processor: satteri({
-			features: { directive: true },
+			features: { directive: true, math: true },
 			mdastPlugins: [
 				satteriUnwrapImagesPlugin(),
 				satteriGithubCardPlugin(),
 				satteriAdmonitionsPlugin(),
 			],
 			hastPlugins: [
+				satteriMathPlugin(),
 				satteriHeadingIdsPlugin(),
 				satteriAutolinkHeadingsPlugin(),
 				satteriFootnoteLabelPlugin(),

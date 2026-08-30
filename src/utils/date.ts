@@ -15,9 +15,9 @@ export function getFormattedDate(
 	}).format(date);
 }
 
-export function collectionDateSort(
-	a: CollectionEntry<"post" | "note">,
-	b: CollectionEntry<"post" | "note">,
-) {
-	return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+export function collectionDateSort(a: CollectionEntry<"post">, b: CollectionEntry<"post">) {
+	const dateDifference = b.data.publishDate.getTime() - a.data.publishDate.getTime();
+	if (dateDifference !== 0) return dateDifference;
+
+	return b.id.localeCompare(a.id, siteConfig.lang, { numeric: true });
 }

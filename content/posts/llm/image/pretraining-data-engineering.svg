@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">预训练数据工程流水线</title>
+  <desc id="desc">网页、书籍、论文、代码和多语言数据依次经过解析、清洗、去重、质量风险过滤、配比、分词和打包，形成可追踪的训练分片，并通过模型评估持续反馈。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="feedback-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .source { font: 700 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .source-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; text-anchor: middle; }
+      .step-title { font: 700 23px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .step-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .num { font: 700 17px Inter, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+      .output-title { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .output-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .model-title { font: 700 29px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; text-anchor: middle; }
+      .model-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ccfbf1; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .feedback { stroke: #0f766e; stroke-width: 4; stroke-dasharray: 10 8; fill: none; marker-end: url(#feedback-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="68" class="title" text-anchor="middle">Pre-training Data Engineering</text>
+  <text x="800" y="106" class="subtitle" text-anchor="middle">原始内容不是训练数据：每一步都会改变模型最终看到的世界</text>
+
+  <text x="75" y="162" class="subtitle">原始内容世界</text>
+  <g filter="url(#shadow)">
+    <rect x="75" y="185" width="250" height="125" rx="20" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <text x="200" y="235" class="source">网页与社区</text>
+    <text x="200" y="273" class="source-sub">规模大 · 模板与噪声多</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="375" y="185" width="250" height="125" rx="20" fill="#fff" stroke="#d97706" stroke-width="2"/>
+    <text x="500" y="235" class="source">书籍与论文</text>
+    <text x="500" y="273" class="source-sub">结构好 · 解析与版权复杂</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="675" y="185" width="250" height="125" rx="20" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="800" y="235" class="source">代码仓库</text>
+    <text x="800" y="273" class="source-sub">代码 · 文档 · Issue · 测试</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="975" y="185" width="250" height="125" rx="20" fill="#fff" stroke="#0891b2" stroke-width="2"/>
+    <text x="1100" y="235" class="source">多语言与领域</text>
+    <text x="1100" y="273" class="source-sub">本地知识 · 专业能力</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1275" y="185" width="250" height="125" rx="20" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+    <text x="1400" y="235" class="source">合成数据</text>
+    <text x="1400" y="273" class="source-sub">定向补齐 · 必须验证</text>
+  </g>
+
+  <path class="flow" d="M800 325 V375"/>
+
+  <text x="75" y="395" class="subtitle">数据工程流水线</text>
+  <g filter="url(#shadow)">
+    <rect x="55" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="90" cy="455" r="19" fill="#2563eb"/><text x="90" y="456" class="num">1</text>
+    <text x="165" y="487" class="step-title">解析</text>
+    <text x="165" y="525" class="step-sub">抽正文 · 保结构</text>
+    <text x="165" y="551" class="step-sub">记录来源与权限</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="310" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#0891b2" stroke-width="2"/>
+    <circle cx="345" cy="455" r="19" fill="#0891b2"/><text x="345" y="456" class="num">2</text>
+    <text x="420" y="487" class="step-title">清洗</text>
+    <text x="420" y="525" class="step-sub">去广告 · 修乱码</text>
+    <text x="420" y="551" class="step-sub">保留列表、公式与缩进</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="565" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+    <circle cx="600" cy="455" r="19" fill="#7c3aed"/><text x="600" y="456" class="num">3</text>
+    <text x="675" y="487" class="step-title">去重</text>
+    <text x="675" y="525" class="step-sub">Exact · MinHash</text>
+    <text x="675" y="551" class="step-sub">控制记忆与虚假规模</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="820" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="855" cy="455" r="19" fill="#dc2626"/><text x="855" y="456" class="num">4</text>
+    <text x="930" y="487" class="step-title">质量与风险</text>
+    <text x="930" y="525" class="step-sub">PII · 安全 · 版权</text>
+    <text x="930" y="551" class="step-sub">评测去污染</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1075" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#d97706" stroke-width="2"/>
+    <circle cx="1110" cy="455" r="19" fill="#d97706"/><text x="1110" y="456" class="num">5</text>
+    <text x="1185" y="487" class="step-title">数据配比</text>
+    <text x="1185" y="525" class="step-sub">质量 · 能力 · 风险</text>
+    <text x="1185" y="551" class="step-sub">分阶段调整采样</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1330" y="420" width="220" height="155" rx="20" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+    <circle cx="1365" cy="455" r="19" fill="#0f766e"/><text x="1365" y="456" class="num">6</text>
+    <text x="1440" y="487" class="step-title">编码与打包</text>
+    <text x="1440" y="525" class="step-sub">Tokenize · EOD</text>
+    <text x="1440" y="551" class="step-sub">Packing · Sharding</text>
+  </g>
+
+  <path class="flow" d="M275 498 H300"/>
+  <path class="flow" d="M530 498 H555"/>
+  <path class="flow" d="M785 498 H810"/>
+  <path class="flow" d="M1040 498 H1065"/>
+  <path class="flow" d="M1295 498 H1320"/>
+
+  <path class="flow" d="M1440 590 V655 H1150"/>
+  <g filter="url(#shadow)">
+    <rect x="830" y="625" width="320" height="155" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <text x="990" y="682" class="output-title">Training Shards</text>
+    <text x="990" y="723" class="output-sub">数据版本 · Mixture 配置</text>
+    <text x="990" y="752" class="output-sub">Tokenizer · 元数据 · 文档边界</text>
+  </g>
+  <path class="flow" d="M820 702 H735"/>
+  <g filter="url(#shadow)">
+    <rect x="415" y="625" width="320" height="155" rx="22" fill="#fff" stroke="#475569" stroke-width="3"/>
+    <text x="575" y="682" class="output-title">Pre-training</text>
+    <text x="575" y="723" class="output-sub">分布式读取 · 预测 token</text>
+    <text x="575" y="752" class="output-sub">持续监控 Loss 与能力</text>
+  </g>
+  <path class="flow" d="M405 702 H320"/>
+  <g filter="url(#shadow)">
+    <rect x="55" y="625" width="265" height="155" rx="22" fill="#0f766e"/>
+    <text x="188" y="687" class="model-title">Base Model</text>
+    <text x="188" y="729" class="model-sub">语言 · 知识 · 代码</text>
+    <text x="188" y="758" class="model-sub">能力画像来自训练分布</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1210" y="650" width="330" height="105" rx="20" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+    <text x="1375" y="693" class="step-title">能力评估与数据归因</text>
+    <text x="1375" y="730" class="step-sub">错误案例回流到过滤、配比和采样</text>
+  </g>
+  <path class="feedback" d="M1210 703 H1175 V825 H930 V790"/>
+  <path class="feedback" d="M1375 640 V605 H1185 V585"/>
+
+  <rect x="180" y="835" width="1240" height="45" rx="14" fill="#ccfbf1"/>
+  <text x="800" y="864" class="source">数据工程的目标：让模型能力可设计、可追踪、可复现、可评估</text>
+</svg>

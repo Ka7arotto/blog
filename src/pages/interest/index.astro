@@ -1,0 +1,279 @@
+---
+import { Image } from "astro:assets";
+import dayOfTheJackalCover from "@/assets/interests/day-of-the-jackal.jpg";
+import dragonBallCover from "@/assets/interests/dragon-ball.jpg";
+import narutoCover from "@/assets/interests/naruto.webp";
+import peakyBlindersCover from "@/assets/interests/peaky-blinders.jpg";
+import strangerThingsCover from "@/assets/interests/stranger-things.jpg";
+import easonChanCover from "@/assets/interests/eason-chan.jpg";
+import tulsaKingCover from "@/assets/interests/tulsa-king.jpg";
+import wednesdayCover from "@/assets/interests/wednesday.jpg";
+import wongKaKuiCover from "@/assets/interests/wong-ka-kui.png";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Explore my interests",
+	title: "Interest",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-12">Interest</h1>
+
+	<section class="interests-section" aria-labelledby="anime-title">
+		<h2 class="interests-group-title" id="anime-title">Anime</h2>
+		<div class="interests-grid">
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={dragonBallCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Dragon Ball</h3>
+					</div>
+					<p class="interest-description" lang="ja">オッス！オラ悟空！</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={narutoCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Naruto</h3>
+					</div>
+					<p class="interest-description" lang="ja">まっすぐ自分の言葉は曲げねぇ！</p>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section class="interests-section" aria-labelledby="music-title">
+		<h2 class="interests-group-title" id="music-title">Music</h2>
+		<div class="interests-grid">
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={wongKaKuiCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Beyond</h3>
+					</div>
+					<p class="interest-description">纵使啰嗦始终关注，不懂珍惜太内疚</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={easonChanCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">陈奕迅</h3>
+					</div>
+					<p class="interest-description">你会不会忽然的出现，在街角的咖啡店</p>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section class="interests-section" aria-labelledby="tv-series-title">
+		<h2 class="interests-group-title" id="tv-series-title">Netflix</h2>
+		<div class="interests-grid">
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={strangerThingsCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Stranger Things</h3>
+					</div>
+					<p class="interest-description">Friends don't lie.</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={peakyBlindersCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Peaky Blinders</h3>
+					</div>
+					<p class="interest-description">By order of the Peaky Blinders.</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={dayOfTheJackalCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">The Day of the Jackal</h3>
+					</div>
+					<p class="interest-description">The hunter becomes the hunted.</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={wednesdayCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Wednesday</h3>
+					</div>
+					<p class="interest-description">I don't bury hatchets. I sharpen them.</p>
+				</div>
+			</article>
+			<article class="interest-card">
+				<Image
+					alt=""
+					class="interest-cover"
+					height={240}
+					src={tulsaKingCover}
+					width={280}
+				/>
+				<div class="interest-body">
+					<div class="interest-header">
+						<h3 class="interest-name">Tulsa King</h3>
+					</div>
+					<p class="interest-description">New York made him. Tulsa changed the rules.</p>
+				</div>
+			</article>
+		</div>
+	</section>
+</PageLayout>
+
+<style>
+	.interests-section {
+		margin-block-end: 1rem;
+	}
+
+	.interests-group-title {
+		border-block-end: 1px solid color-mix(in oklab, var(--color-muted) 35%, transparent);
+		padding-block-end: 0.4rem;
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+			"Courier New", monospace;
+		font-size: 0.82rem;
+		font-weight: 500;
+		letter-spacing: 0.06em;
+	}
+
+	.interests-group-title::before {
+		content: "// ";
+		opacity: 0.7;
+	}
+
+	.interests-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1rem;
+		padding-block: 1rem 2rem;
+	}
+
+	.interest-card {
+		position: relative;
+		height: 120px;
+		overflow: hidden;
+		border: 1px solid color-mix(in oklab, var(--color-muted) 20%, transparent);
+		border-radius: 8px;
+		background: transparent;
+		transition:
+			border-color 250ms ease,
+			transform 250ms ease,
+			box-shadow 250ms ease;
+	}
+
+	.interest-card:hover {
+		transform: translateY(-2px);
+		border-color: var(--color-accent);
+		box-shadow:
+			0 0 0 1px color-mix(in oklab, var(--color-accent) 35%, transparent),
+			0 16px 32px -16px color-mix(in oklab, var(--color-accent) 55%, transparent);
+	}
+
+	.interest-cover {
+		position: absolute;
+		inset-block: 0;
+		inset-inline-end: 0;
+		width: 50%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		-webkit-mask-image: linear-gradient(to left, rgb(0 0 0 / 85%) 0%, transparent 100%);
+		mask-image: linear-gradient(to left, rgb(0 0 0 / 85%) 0%, transparent 100%);
+		pointer-events: none;
+	}
+
+	.interest-body {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 1rem 1.2rem;
+	}
+
+	.interest-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-block-end: 0.3rem;
+	}
+
+	.interest-name {
+		margin: 0;
+		color: var(--color-global-text);
+		font-size: 1.02rem;
+		font-weight: 500;
+	}
+
+	.interest-description {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.86rem;
+		line-height: 1.5;
+	}
+
+	@media (max-width: 480px) {
+		.interests-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.interest-card {
+			transition: none;
+		}
+	}
+</style>

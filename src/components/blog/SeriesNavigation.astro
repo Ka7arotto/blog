@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getAllPosts } from "@/data/post";
+
+interface Props {
+	post: CollectionEntry<"post">;
+}
+
+const { post } = Astro.props;
+const seriesPosts = (await getAllPosts())
+	.filter((entry) => entry.id.startsWith("llm/"))
+	.sort((a, b) => a.id.localeCompare(b.id));
+const currentIndex = seriesPosts.findIndex((entry) => entry.id === post.id);
+const currentChapter = currentIndex + 1;
+const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : undefined;
+const nextPost = currentIndex >= 0 ? seriesPosts[currentIndex + 1] : undefined;
+const progress = currentIndex >= 0 ? (currentChapter / seriesPosts.length) * 100 : 0;
+---
+
+{
+	currentIndex >= 0 && seriesPosts.length > 1 && (
+		<nav class="not-prose mt-12 border-t border-dashed border-zinc-500/60 pt-6" aria-label="LLM series">
+			<div class="flex items-center justify-between gap-4">
+				<span class="title text-base">LLM Series</span>
+				<span class="text-muted text-xs">
+					{currentChapter} / {seriesPosts.length}
+				</span>
+			</div>
+			<div
+				class="mt-3 h-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700"
+				role="progressbar"
+				aria-label="LLM series progress"
+				aria-valuemin="1"
+				aria-valuemax={seriesPosts.length}
+				aria-valuenow={currentChapter}
+			>
+				<span class="bg-accent block h-full rounded-full" style={`width: ${progress}%`} />
+			</div>
+			<div class="mt-5 grid gap-3 sm:grid-cols-2">
+				{previousPost ? (
+					<a
+						class="hover:border-accent rounded-md border border-zinc-500/40 p-3 transition-colors"
+						href={`/posts/${previousPost.id}/`}
+					>
+						<span class="text-muted block text-xs">← Previous Chapter</span>
+						<span class="mt-1 block font-semibold">{previousPost.data.title}</span>
+					</a>
+				) : (
+					<span class="hidden sm:block" aria-hidden="true" />
+				)}
+				{nextPost && (
+					<a
+						class="hover:border-accent rounded-md border border-zinc-500/40 p-3 transition-colors sm:text-end"
+						href={`/posts/${nextPost.id}/`}
+					>
+						<span class="text-muted block text-xs">Next Chapter →</span>
+						<span class="mt-1 block font-semibold">{nextPost.data.title}</span>
+					</a>
+				)}
+			</div>
+		</nav>
+	)
+}

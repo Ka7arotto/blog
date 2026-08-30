@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">推理模型的能力形成与运行链路</title>
+  <desc id="desc">思维链数据、验证器和可验证奖励强化学习共同训练推理模型，推理预算在部署时控制计算，蒸馏将能力迁移到小模型。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .section { font: 700 22px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; letter-spacing: 2px; }
+      .card-title { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .card-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .light-title { font: 700 29px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; text-anchor: middle; }
+      .light-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ccfbf1; text-anchor: middle; }
+      .label { font: 600 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .feedback { stroke: #0f766e; stroke-width: 4; stroke-dasharray: 10 8; fill: none; marker-end: url(#arrow-green); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="70" class="title" text-anchor="middle">Reasoning Model：训练形成能力，运行分配预算</text>
+  <text x="800" y="108" class="subtitle" text-anchor="middle">CoT 负责示范 · Verifier 负责判断 · RLVR 负责强化 · Budget 负责成本</text>
+
+  <text x="85" y="173" class="section">TRAINING</text>
+  <g filter="url(#shadow)">
+    <rect x="85" y="200" width="285" height="170" rx="22" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+    <rect x="85" y="200" width="285" height="12" rx="6" fill="#2563eb"/>
+    <text x="228" y="267" class="card-title">CoT 数据</text>
+    <text x="228" y="307" class="card-sub">问题 · 推理轨迹 · 答案</text>
+    <text x="228" y="338" class="card-sub">示范如何展开中间步骤</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="465" y="200" width="285" height="170" rx="22" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="465" y="200" width="285" height="12" rx="6" fill="#d97706"/>
+    <text x="608" y="267" class="card-title">Verifier</text>
+    <text x="608" y="307" class="card-sub">答案 · 测试 · 规则</text>
+    <text x="608" y="338" class="card-sub">把“是否正确”变成信号</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="845" y="200" width="285" height="170" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="845" y="200" width="285" height="12" rx="6" fill="#7c3aed"/>
+    <text x="988" y="267" class="card-title">RLVR</text>
+    <text x="988" y="307" class="card-sub">采样 → 验证 → Reward</text>
+    <text x="988" y="338" class="card-sub">强化有效推理策略</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1225" y="200" width="290" height="170" rx="22" fill="#0f766e"/>
+    <text x="1370" y="270" class="light-title">Reasoning Model</text>
+    <text x="1370" y="312" class="light-sub">分解 · 搜索 · 验证 · 修正</text>
+    <text x="1370" y="342" class="light-sub">形成稳定求解行为</text>
+  </g>
+
+  <path class="flow" d="M370 285 H455"/>
+  <path class="flow" d="M750 285 H835"/>
+  <path class="flow" d="M1130 285 H1215"/>
+
+  <path class="feedback" d="M988 380 V425 H608 V380"/>
+  <text x="798" y="451" class="label">验证反馈进入下一轮采样</text>
+
+  <line x1="85" y1="490" x2="1515" y2="490" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="85" y="545" class="section">SERVING</text>
+
+  <g filter="url(#shadow)">
+    <rect x="85" y="575" width="265" height="165" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <text x="218" y="638" class="card-title">任务难度</text>
+    <text x="218" y="678" class="card-sub">简单 / 复杂 / 高风险</text>
+    <text x="218" y="709" class="card-sub">判断是否需要深度推理</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="435" y="575" width="265" height="165" rx="22" fill="#fff" stroke="#0284c7" stroke-width="3"/>
+    <text x="568" y="638" class="card-title">Thinking Budget</text>
+    <text x="568" y="678" class="card-sub">token · 时间 · 候选</text>
+    <text x="568" y="709" class="card-sub">动态分配推理成本</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="785" y="575" width="265" height="165" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <text x="918" y="638" class="card-title">求解过程</text>
+    <text x="918" y="678" class="card-sub">展开 · 搜索 · 工具</text>
+    <text x="918" y="709" class="card-sub">在预算内生成候选</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1135" y="575" width="380" height="165" rx="22" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <text x="1325" y="638" class="card-title">验证与停止</text>
+    <text x="1325" y="678" class="card-sub">通过 → 输出结果</text>
+    <text x="1325" y="709" class="card-sub">失败且有预算 → 修正或重试</text>
+  </g>
+
+  <path class="flow" d="M350 657 H425"/>
+  <path class="flow" d="M700 657 H775"/>
+  <path class="flow" d="M1050 657 H1125"/>
+  <path class="feedback" d="M1325 750 V792 H918 V750"/>
+
+  <g filter="url(#shadow)">
+    <rect x="345" y="805" width="910" height="65" rx="18" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
+    <text x="800" y="846" class="label">Distillation：用已验证的强模型轨迹训练更低成本的小模型</text>
+  </g>
+</svg>

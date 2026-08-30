@@ -1,5 +1,6 @@
 @layer theme, base, pagefind, components, utilities;
 
+@import "katex/dist/katex.min.css";
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
@@ -125,6 +126,10 @@
 
 	.title {
 		@apply text-accent-2 text-2xl font-semibold;
+	}
+
+	.katex-display {
+		@apply overflow-x-auto overflow-y-hidden py-2;
 	}
 }
 

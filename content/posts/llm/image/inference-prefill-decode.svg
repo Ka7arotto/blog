@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大模型推理中的 Prefill、KV Cache 与 Decode</title>
+  <desc id="desc">用户请求先经过 Prefill 并行处理完整输入并建立 KV Cache，随后 Decode 循环逐 token 生成答案并更新缓存。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="loop-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7c3aed"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .card-title { font: 700 29px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .card-sub { font: 400 19px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .label { font: 700 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .token { font: 700 16px Inter, sans-serif; fill: white; text-anchor: middle; dominant-baseline: middle; }
+      .metric { font: 700 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f766e; }
+      .metric-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .loop { stroke: #7c3aed; stroke-width: 4; fill: none; marker-end: url(#loop-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="72" class="title" text-anchor="middle">Prefill → KV Cache → Decode</text>
+  <text x="800" y="110" class="subtitle" text-anchor="middle">一次在线请求如何从“读题”进入“逐 token 写答案”</text>
+
+  <path class="flow" d="M345 360 H405"/>
+  <path class="flow" d="M720 360 H780"/>
+  <path class="flow" d="M1090 360 H1150"/>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="200" width="290" height="320" rx="24" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <rect x="55" y="200" width="290" height="14" rx="7" fill="#0f766e"/>
+    <text x="88" y="264" class="card-title">用户请求</text>
+    <text x="88" y="302" class="card-sub">Prompt 已知</text>
+    <g>
+      <rect x="88" y="342" width="54" height="58" rx="10" fill="#0f766e"/><text x="115" y="371" class="token">T1</text>
+      <rect x="151" y="342" width="54" height="58" rx="10" fill="#14b8a6"/><text x="178" y="371" class="token">T2</text>
+      <rect x="214" y="342" width="54" height="58" rx="10" fill="#2dd4bf"/><text x="241" y="371" class="token">T3</text>
+      <rect x="277" y="342" width="36" height="58" rx="10" fill="#5eead4"/><text x="295" y="371" class="token">…</text>
+    </g>
+    <text x="88" y="446" class="card-sub">系统提示词</text>
+    <text x="88" y="478" class="card-sub">问题 · 对话历史 · 文档</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="405" y="200" width="315" height="320" rx="24" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="405" y="200" width="315" height="14" rx="7" fill="#d97706"/>
+    <text x="438" y="264" class="card-title">Prefill</text>
+    <text x="438" y="302" class="card-sub">并行处理全部输入 token</text>
+    <rect x="447" y="338" width="230" height="95" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="562" y="371" class="label">矩阵—矩阵计算</text>
+    <text x="562" y="404" class="label">更接近计算受限</text>
+    <text x="438" y="474" class="card-sub">产出：首 token 分布</text>
+    <text x="438" y="504" class="card-sub">以及完整 Prompt 的 K/V</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="780" y="200" width="310" height="320" rx="24" fill="#fff" stroke="#0284c7" stroke-width="3"/>
+    <rect x="780" y="200" width="310" height="14" rx="7" fill="#0284c7"/>
+    <text x="813" y="264" class="card-title">KV Cache</text>
+    <text x="813" y="302" class="card-sub">保存历史 token 的 K / V</text>
+    <g>
+      <rect x="816" y="342" width="62" height="60" rx="10" fill="#e0f2fe" stroke="#0284c7"/><text x="847" y="372" class="label">K1</text>
+      <rect x="887" y="342" width="62" height="60" rx="10" fill="#bae6fd" stroke="#0284c7"/><text x="918" y="372" class="label">K2</text>
+      <rect x="958" y="342" width="62" height="60" rx="10" fill="#7dd3fc" stroke="#0284c7"/><text x="989" y="372" class="label">K3</text>
+      <rect x="816" y="412" width="62" height="60" rx="10" fill="#dbeafe" stroke="#2563eb"/><text x="847" y="442" class="label">V1</text>
+      <rect x="887" y="412" width="62" height="60" rx="10" fill="#bfdbfe" stroke="#2563eb"/><text x="918" y="442" class="label">V2</text>
+      <rect x="958" y="412" width="62" height="60" rx="10" fill="#93c5fd" stroke="#2563eb"/><text x="989" y="442" class="label">V3</text>
+    </g>
+    <text x="813" y="504" class="card-sub">用显存避免历史 K/V 重算</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1150" y="200" width="395" height="320" rx="24" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="1150" y="200" width="395" height="14" rx="7" fill="#7c3aed"/>
+    <text x="1183" y="264" class="card-title">Decode 循环</text>
+    <text x="1183" y="302" class="card-sub">每轮通常确认一个新 token</text>
+    <rect x="1188" y="345" width="130" height="76" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="1253" y="383" class="label">读取权重与缓存</text>
+    <rect x="1370" y="345" width="130" height="76" rx="15" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="1435" y="383" class="label">选择新 token</text>
+    <path class="loop" d="M1318 383 H1360"/>
+    <path class="loop" d="M1435 430 V462 H1253 V431"/>
+    <text x="1183" y="500" class="card-sub">追加新 K/V，再进入下一轮</text>
+  </g>
+
+  <rect x="95" y="605" width="1410" height="205" rx="24" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="135" y="654" class="metric">用户感知时间线</text>
+  <line x1="180" y1="728" x2="1430" y2="728" stroke="#cbd5e1" stroke-width="5"/>
+  <circle cx="220" cy="728" r="13" fill="#0f766e"/><text x="220" y="769" class="metric-sub" text-anchor="middle">请求到达</text>
+  <circle cx="620" cy="728" r="13" fill="#d97706"/><text x="620" y="769" class="metric-sub" text-anchor="middle">首 token</text>
+  <circle cx="850" cy="728" r="11" fill="#7c3aed"/>
+  <circle cx="1080" cy="728" r="11" fill="#7c3aed"/>
+  <circle cx="1310" cy="728" r="13" fill="#7c3aed"/><text x="1310" y="769" class="metric-sub" text-anchor="middle">生成结束</text>
+  <path d="M220 695 H620" stroke="#d97706" stroke-width="4"/><text x="420" y="684" class="metric" text-anchor="middle">TTFT</text>
+  <path d="M620 695 H850" stroke="#7c3aed" stroke-width="4"/><text x="735" y="684" class="metric" text-anchor="middle">TPOT</text>
+  <path d="M850 695 H1080" stroke="#7c3aed" stroke-width="4"/><path d="M1080 695 H1310" stroke="#7c3aed" stroke-width="4"/>
+</svg>
+

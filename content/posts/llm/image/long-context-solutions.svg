@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">长上下文的五类核心技术方案</title>
+  <desc id="desc">位置编码、注意力优化、KV Cache 管理、长序列训练和检索增强共同构成长上下文能力。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .card-title { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .card-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+      .center-title { font: 700 30px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; text-anchor: middle; }
+      .center-sub { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ccfbf1; text-anchor: middle; }
+      .flow-text { font: 700 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .flow-sub { font: 400 15px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; text-anchor: middle; }
+      .connector { stroke: #94a3b8; stroke-width: 3; fill: none; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="70" class="title" text-anchor="middle">Effective Long Context</text>
+  <text x="800" y="108" class="subtitle" text-anchor="middle">五类能力共同决定模型能否稳定利用长输入</text>
+
+  <path class="connector" d="M360 275 H505"/>
+  <path class="connector" d="M1095 275 H1240"/>
+  <path class="connector" d="M360 505 H505"/>
+  <path class="connector" d="M1095 505 H1240"/>
+  <path class="connector" d="M800 555 V625"/>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="185" width="280" height="180" rx="22" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="80" y="185" width="280" height="12" rx="6" fill="#d97706"/>
+    <text x="220" y="252" class="card-title">位置编码扩展</text>
+    <text x="220" y="295" class="card-sub">RoPE Scaling · YaRN</text>
+    <text x="220" y="327" class="card-sub">保持远距离位置感</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1240" y="185" width="280" height="180" rx="22" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+    <rect x="1240" y="185" width="280" height="12" rx="6" fill="#2563eb"/>
+    <text x="1380" y="252" class="card-title">Attention 优化</text>
+    <text x="1380" y="295" class="card-sub">Flash · Sparse · Window</text>
+    <text x="1380" y="327" class="card-sub">控制关系计算成本</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="415" width="280" height="180" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="80" y="415" width="280" height="12" rx="6" fill="#7c3aed"/>
+    <text x="220" y="482" class="card-title">KV Cache 优化</text>
+    <text x="220" y="525" class="card-sub">GQA · Quantization · Paging</text>
+    <text x="220" y="557" class="card-sub">降低长历史显存成本</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1240" y="415" width="280" height="180" rx="22" fill="#fff" stroke="#0891b2" stroke-width="3"/>
+    <rect x="1240" y="415" width="280" height="12" rx="6" fill="#0891b2"/>
+    <text x="1380" y="482" class="card-title">长序列训练</text>
+    <text x="1380" y="525" class="card-sub">Retrieval · Multi-hop · SFT</text>
+    <text x="1380" y="557" class="card-sub">学习检索和跨段推理</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="505" y="210" width="590" height="345" rx="34" fill="#0f766e"/>
+    <text x="800" y="318" class="center-title">有效长上下文能力</text>
+    <text x="800" y="370" class="center-sub">稳定定位关键信息</text>
+    <text x="800" y="407" class="center-sub">理解远距离关系与全局结构</text>
+    <text x="800" y="444" class="center-sub">在成本约束下完成可靠推理</text>
+    <rect x="625" y="480" width="350" height="42" rx="14" fill="#115e59"/>
+    <text x="800" y="507" class="center-sub">Capacity ≠ Utilization</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="620" y="625" width="360" height="125" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <text x="800" y="678" class="card-title">RAG 信息筛选</text>
+    <text x="800" y="718" class="card-sub">先找资料，再把高相关内容交给模型阅读</text>
+  </g>
+
+  <text x="800" y="805" class="subtitle" text-anchor="middle">生产链路</text>
+  <g>
+    <rect x="75" y="830" width="240" height="52" rx="16" fill="#fff" stroke="#cbd5e1"/>
+    <text x="195" y="862" class="flow-text">用户问题</text>
+    <rect x="385" y="830" width="240" height="52" rx="16" fill="#fff" stroke="#cbd5e1"/>
+    <text x="505" y="854" class="flow-text">检索与排序</text>
+    <text x="505" y="875" class="flow-sub">减少无关资料</text>
+    <rect x="695" y="830" width="240" height="52" rx="16" fill="#fff" stroke="#cbd5e1"/>
+    <text x="815" y="854" class="flow-text">长上下文阅读</text>
+    <text x="815" y="875" class="flow-sub">保留跨段关系</text>
+    <rect x="1005" y="830" width="240" height="52" rx="16" fill="#fff" stroke="#cbd5e1"/>
+    <text x="1125" y="854" class="flow-text">综合推理</text>
+    <text x="1125" y="875" class="flow-sub">组合多个证据</text>
+    <rect x="1315" y="830" width="210" height="52" rx="16" fill="#ecfdf5" stroke="#0f766e"/>
+    <text x="1420" y="854" class="flow-text">答案与引用</text>
+    <text x="1420" y="875" class="flow-sub">结果可追溯</text>
+    <path class="flow" d="M315 856 H375"/>
+    <path class="flow" d="M625 856 H685"/>
+    <path class="flow" d="M935 856 H995"/>
+    <path class="flow" d="M1245 856 H1305"/>
+  </g>
+</svg>

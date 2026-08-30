@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大模型系统可靠性的四个评测层次</title>
+  <desc id="desc">可靠的大模型应用需要依次检查模型能力、上下文与证据、工具执行和安全控制。只有每一层都通过验证，最终答案或动作才具有可信度。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef7f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 46px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 20px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .num { font: 700 22px Inter, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+      .layer-title { font: 700 25px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .label { font: 600 16px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .value { font: 400 17px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .result-title { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; text-anchor: middle; }
+      .result-sub { font: 400 16px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ccfbf1; text-anchor: middle; }
+      .flow { stroke: #475569; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="67" class="title" text-anchor="middle">LLM System Reliability</text>
+  <text x="800" y="105" class="subtitle" text-anchor="middle">可靠性不是一个模型分数，而是能力、证据、执行与边界共同通过验证</text>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="150" width="1380" height="130" rx="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="165" cy="215" r="29" fill="#2563eb"/><text x="165" y="216" class="num">1</text>
+    <text x="220" y="198" class="layer-title">模型能力</text>
+    <text x="220" y="235" class="value">模型本身会不会完成任务？</text>
+    <text x="600" y="188" class="label">评测重点</text>
+    <text x="600" y="221" class="value">事实 · 数学 · 代码 · 推理 · 指令遵循</text>
+    <text x="1050" y="188" class="label">典型失败</text>
+    <text x="1050" y="221" class="value">结论错误 · 遗漏约束 · 输出不稳定</text>
+  </g>
+  <path class="flow" d="M800 280 V322"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="332" width="1380" height="130" rx="24" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <circle cx="165" cy="397" r="29" fill="#7c3aed"/><text x="165" y="398" class="num">2</text>
+    <text x="220" y="380" class="layer-title">上下文与证据</text>
+    <text x="220" y="417" class="value">是否找到并正确使用外部信息？</text>
+    <text x="600" y="370" class="label">评测重点</text>
+    <text x="600" y="403" class="value">召回 · 排序 · Faithfulness · 引用</text>
+    <text x="1050" y="370" class="label">典型失败</text>
+    <text x="1050" y="403" class="value">漏检 · 证据冲突 · 无依据强答</text>
+  </g>
+  <path class="flow" d="M800 462 V504"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="514" width="1380" height="130" rx="24" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+    <circle cx="165" cy="579" r="29" fill="#d97706"/><text x="165" y="580" class="num">3</text>
+    <text x="220" y="562" class="layer-title">工具执行</text>
+    <text x="220" y="599" class="value">是否选择正确工具并真实完成动作？</text>
+    <text x="600" y="552" class="label">评测重点</text>
+    <text x="600" y="585" class="value">工具选择 · 参数 · 步骤 · 恢复 · 停止</text>
+    <text x="1050" y="552" class="label">典型失败</text>
+    <text x="1050" y="585" class="value">参数错误 · 重复执行 · 任务未完成</text>
+  </g>
+  <path class="flow" d="M800 644 V686"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="696" width="1380" height="105" rx="24" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="165" cy="748" r="29" fill="#dc2626"/><text x="165" y="749" class="num">4</text>
+    <text x="220" y="741" class="layer-title">安全控制</text>
+    <text x="220" y="776" class="value">输入、权限、工具和输出是否都在边界内？</text>
+    <text x="730" y="730" class="label">评测重点</text>
+    <text x="730" y="765" class="value">注入 · 越权 · 泄露 · 高风险动作 · 审计</text>
+    <text x="1180" y="730" class="label">典型失败</text>
+    <text x="1180" y="765" class="value">规则绕过 · 敏感数据暴露</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="500" y="830" width="600" height="58" rx="18" fill="#0f766e"/>
+    <text x="800" y="857" class="result-title">可信结果</text>
+    <text x="800" y="881" class="result-sub">正确答案 / 可验证证据 / 受控动作 / 完整记录</text>
+  </g>
+  <path class="flow" d="M800 801 V820"/>
+</svg>
+

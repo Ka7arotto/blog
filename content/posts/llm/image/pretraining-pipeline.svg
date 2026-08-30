@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大语言模型预训练主流程</title>
+  <desc id="desc">从目标与预算、数据工程、Tokenizer、模型与目标、分布式训练、监控评估、继续预训练到基座模型的流程图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 48px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 22px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+      .step { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .detail { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .step-light { font: 700 27px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #fff; }
+      .detail-light { font: 400 18px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #cbd5e1; }
+      .num { font: 700 20px Inter, sans-serif; fill: white; text-anchor: middle; dominant-baseline: middle; }
+      .footer { font: 600 21px Inter, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f766e; text-anchor: middle; }
+      .arrow { stroke: #334155; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="78" class="title" text-anchor="middle">Pre-training Pipeline</text>
+  <text x="800" y="116" class="subtitle" text-anchor="middle">从训练目标到 Base Model 的完整工程链路</text>
+
+  <path class="arrow" d="M370 275 H440"/>
+  <path class="arrow" d="M760 275 H830"/>
+  <path class="arrow" d="M1150 275 H1220"/>
+  <path class="arrow" d="M1380 385 V470 H1310"/>
+  <path class="arrow" d="M1220 595 H1150"/>
+  <path class="arrow" d="M830 595 H760"/>
+  <path class="arrow" d="M440 595 H370"/>
+
+  <g filter="url(#shadow)">
+    <rect x="50" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <rect x="50" y="170" width="320" height="14" rx="7" fill="#0f766e"/>
+    <circle cx="94" cy="222" r="23" fill="#0f766e"/><text x="94" y="223" class="num">1</text>
+    <text x="130" y="232" class="step">目标与预算</text>
+    <text x="82" y="284" class="detail">参数规模 · 上下文长度</text>
+    <text x="82" y="317" class="detail">能力方向 · 训练算力</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="440" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#d97706" stroke-width="3"/>
+    <rect x="440" y="170" width="320" height="14" rx="7" fill="#d97706"/>
+    <circle cx="484" cy="222" r="23" fill="#d97706"/><text x="484" y="223" class="num">2</text>
+    <text x="520" y="232" class="step">数据工程</text>
+    <text x="472" y="284" class="detail">收集 · 清洗 · 去重</text>
+    <text x="472" y="317" class="detail">过滤 · 配比 · 课程设计</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#4f46e5" stroke-width="3"/>
+    <rect x="830" y="170" width="320" height="14" rx="7" fill="#4f46e5"/>
+    <circle cx="874" cy="222" r="23" fill="#4f46e5"/><text x="874" y="223" class="num">3</text>
+    <text x="910" y="232" class="step">Tokenizer</text>
+    <text x="862" y="284" class="detail">词表设计 · 切分粒度</text>
+    <text x="862" y="317" class="detail">多语言与代码压缩率</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="170" width="320" height="210" rx="22" fill="#fff" stroke="#dc2626" stroke-width="3"/>
+    <rect x="1220" y="170" width="320" height="14" rx="7" fill="#dc2626"/>
+    <circle cx="1264" cy="222" r="23" fill="#dc2626"/><text x="1264" y="223" class="num">4</text>
+    <text x="1300" y="232" class="step">模型与目标</text>
+    <text x="1252" y="284" class="detail">Dense / MoE · Attention</text>
+    <text x="1252" y="317" class="detail">Causal LM · 上下文配置</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <rect x="1220" y="490" width="320" height="14" rx="7" fill="#7c3aed"/>
+    <circle cx="1264" cy="542" r="23" fill="#7c3aed"/><text x="1264" y="543" class="num">5</text>
+    <text x="1300" y="552" class="step">分布式训练</text>
+    <text x="1252" y="604" class="detail">并行 · 分片 · 混合精度</text>
+    <text x="1252" y="637" class="detail">稳定优化 · 故障恢复</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#0284c7" stroke-width="3"/>
+    <rect x="830" y="490" width="320" height="14" rx="7" fill="#0284c7"/>
+    <circle cx="874" cy="542" r="23" fill="#0284c7"/><text x="874" y="543" class="num">6</text>
+    <text x="910" y="552" class="step">监控与评估</text>
+    <text x="862" y="604" class="detail">Loss · 梯度 · 吞吐</text>
+    <text x="862" y="637" class="detail">Benchmark · 污染检测</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="440" y="490" width="320" height="210" rx="22" fill="#fff" stroke="#65a30d" stroke-width="3"/>
+    <rect x="440" y="490" width="320" height="14" rx="7" fill="#65a30d"/>
+    <circle cx="484" cy="542" r="23" fill="#65a30d"/><text x="484" y="543" class="num">7</text>
+    <text x="520" y="552" class="step">继续预训练</text>
+    <text x="472" y="604" class="detail">领域 · 长上下文</text>
+    <text x="472" y="637" class="detail">能力数据 · Final Mix</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="50" y="490" width="320" height="210" rx="22" fill="#0f172a" stroke="#0f172a" stroke-width="3"/>
+    <rect x="50" y="490" width="320" height="14" rx="7" fill="#14b8a6"/>
+    <circle cx="94" cy="542" r="23" fill="#14b8a6"/><text x="94" y="543" class="num">8</text>
+    <text x="130" y="552" class="step-light">Base Model</text>
+    <text x="82" y="604" class="detail-light">通用能力底座</text>
+    <text x="82" y="637" class="detail-light">等待 SFT 与偏好对齐</text>
+  </g>
+
+  <rect x="125" y="770" width="1350" height="78" rx="18" fill="#ccfbf1" stroke="#5eead4" stroke-width="2"/>
+  <text x="800" y="818" class="footer">数据决定学什么 · 架构决定容量 · 系统决定能否稳定学完 · 评估决定是否真的变强</text>
+</svg>

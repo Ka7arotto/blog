@@ -7,7 +7,7 @@ import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
 // Posts
-const MAX_POSTS = 10;
+const MAX_POSTS = 20;
 const allPosts = await getAllPosts();
 const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
 const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
@@ -27,8 +27,10 @@ const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
 			>. I am currently pursuing a Master’s degree at Wuhan University, focusing on <strong
 				>Web Security</strong
 			>,
-			<strong>AI Security</strong>, and <strong>AI4Sec</strong>. Feel free to get in contact with me
-			for technical discussions!
+			<strong>AI Security</strong> and <strong>AI4Sec</strong>. I’m interested in <strong
+				>Static Program Analysis</strong
+			>, <strong>AI Agents</strong> and <strong>LLM Post-Training</strong> techniques. Feel free to
+			contact me for technical discussions!
 		</p>
 		<SocialList />
 	</section>
