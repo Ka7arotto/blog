@@ -1,7 +1,7 @@
 ---
 title: "LLM 10：长上下文"
 description: "理解大语言模型如何通过位置编码扩展、Attention 优化、KV Cache 管理、长序列训练和 RAG，在长输入中稳定定位、理解和利用关键信息。"
-publishDate: "01 Jul 2026"
+publishDate: "01 Jul 2025"
 tags: ["llm"]
 ---
 

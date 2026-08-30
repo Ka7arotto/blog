@@ -1,7 +1,7 @@
 ---
 title: "LLM 11：LLM-based Agent"
 description: "理解 Agent 如何通过规划、工具调用、状态管理、反馈校验和安全控制，把大语言模型从对话生成系统扩展为可控的任务执行系统。"
-publishDate: "04 Jul 2026"
+publishDate: "04 Jul 2025"
 tags: ["llm"]
 ---
 

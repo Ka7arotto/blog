@@ -1,7 +1,7 @@
 ---
 title: "LLM 15：MCP 与 Function Calling"
 description: "理解 Function Calling 如何把自然语言意图转换为结构化工具调用，以及 MCP 如何通过 Host、Client、Server、Tools、Resources 和 Prompts 标准化外部能力接入。"
-publishDate: "09 Jul 2026"
+publishDate: "09 Jul 2025"
 tags: ["llm"]
 ---
 
@@ -119,7 +119,7 @@ Tool Schema（工具结构定义）通常使用 JSON Schema 描述工具名称�
 	"result": {
 		"status": "failed",
 		"reason": "payment_timeout",
-		"updated_at": "2026-07-09T10:30:00+08:00"
+		"updated_at": "2025-07-09T10:30:00+08:00"
 	}
 }
 ```

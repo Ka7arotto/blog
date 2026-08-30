@@ -1,7 +1,7 @@
 ---
 title: "LLM 04：Dense 与 MoE"
 description: "理解 Dense 与 MoE 如何在模型容量、单 token 计算成本和系统复杂度之间做权衡。"
-publishDate: "24 Jun 2026"
+publishDate: "24 Jun 2025"
 tags: ["llm"]
 ---
 

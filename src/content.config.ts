@@ -2,8 +2,14 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-function removeDupsAndLowerCase(array: string[]) {
-	return [...new Set(array.map((str) => str.toLowerCase()))];
+function removeDups(array: string[]) {
+	const seen = new Set<string>();
+	return array.filter((str) => {
+		const normalized = str.toLowerCase();
+		if (seen.has(normalized)) return false;
+		seen.add(normalized);
+		return true;
+	});
 }
 
 const titleSchema = z.string().max(60);
@@ -25,7 +31,7 @@ const post = defineCollection({
 				.optional(),
 			draft: z.boolean().default(false),
 			ogImage: z.string().optional(),
-			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+			tags: z.array(z.string()).default([]).transform(removeDups),
 			publishDate: z
 				.string()
 				.or(z.date())

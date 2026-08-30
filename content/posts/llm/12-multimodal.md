@@ -1,7 +1,7 @@
 ---
 title: "LLM 12：多模态"
 description: "理解图像、语音和视频如何被编码为多模态 token，与语言表示对齐并进入 LLM，以及主流架构、训练流程、Grounding、评估和安全问题。"
-publishDate: "05 Jul 2026"
+publishDate: "05 Jul 2025"
 tags: ["llm"]
 ---
 

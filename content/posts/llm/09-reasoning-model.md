@@ -1,7 +1,7 @@
 ---
 title: "LLM 09：推理模型"
 description: "理解推理模型如何通过计算展开、思维链、验证器、RLVR、能力蒸馏和动态推理预算，提高复杂任务的求解可靠性。"
-publishDate: "30 Jun 2026"
+publishDate: "30 Jun 2025"
 tags: ["llm"]
 ---
 

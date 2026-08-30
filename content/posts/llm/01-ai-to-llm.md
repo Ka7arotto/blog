@@ -1,7 +1,7 @@
 ---
 title: "LLM 01：从 AI 到 LLM"
 description: "梳理人工智能的三条发展路线、LLM 的关键演进阶段，以及从数据到智能系统的整体流程。"
-publishDate: "19 Jun 2026"
+publishDate: "19 Jun 2025"
 tags: ["llm"]
 ---
 
@@ -57,7 +57,7 @@ LLM 的发展可以按关键能力变化分成四个阶段。每个阶段都在�
 | 崛起前夜         | 2003–2017 | 从词向量走向 Attention           | 神经语言模型、Word2Vec、Seq2Seq           | 语言开始变成可计算的向量     |
 | Transformer 革命 | 2017–2019 | Transformer 成为语言模型底座     | Transformer、GPT-1、BERT、GPT-2           | 预训练和上下文建模变得可扩展 |
 | 规模化突破       | 2020–2022 | 参数、数据和算力持续扩大         | GPT-3、InstructGPT、GPT-3.5、ChatGPT      | 从补全文字走向完成任务       |
-| 从模型到系统     | 2023–2026 | 多模态、长上下文、工具和推理融合 | GPT-4、Llama、Gemini、Claude、DeepSeek-R1 | LLM 成为智能应用的核心组件   |
+| 从模型到系统     | 2023–2025 | 多模态、长上下文、工具和推理融合 | GPT-4、Llama、Gemini、Claude、DeepSeek-R1 | LLM 成为智能应用的核心组件   |
 
 ![LLM 发展关键时间轴](./image/llm-timeline.png)
 
@@ -119,7 +119,7 @@ GPT-3 展示了 Scaling 的力量：当模型参数、训练数据和计算量�
 语言续写器 → 指令跟随器 → 对话助手
 ```
 
-### 2.5 从模型到系统：多模态、长上下文、Agent 与推理模型（2023–2026）
+### 2.5 从模型到系统：多模态、长上下文、Agent 与推理模型（2023–2025）
 
 这一阶段的竞争重点不再只是参数规模，而是模型能否处理更多信息、保持更长上下文、调用外部工具并完成多步骤任务。
 

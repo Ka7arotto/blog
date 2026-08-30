@@ -1,7 +1,7 @@
 ---
 title: "LLM 08：推理服务"
 description: "理解大语言模型如何通过 Prefill、Decode、KV Cache、Continuous Batching、PagedAttention、投机解码和量化实现高效在线推理。"
-publishDate: "29 Jun 2026"
+publishDate: "29 Jun 2025"
 tags: ["llm"]
 ---
 

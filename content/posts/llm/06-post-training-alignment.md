@@ -1,7 +1,7 @@
 ---
 title: "LLM 06：后训练与对齐"
 description: "理解大语言模型如何通过 SFT、偏好对齐、RLHF、DPO、RLVR、安全训练和工具训练，从 Base Model 变成可用的协作者。"
-publishDate: "27 Jun 2026"
+publishDate: "27 Jun 2025"
 tags: ["llm"]
 ---
 

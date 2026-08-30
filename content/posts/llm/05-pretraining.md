@@ -1,7 +1,7 @@
 ---
 title: "LLM 05：预训练"
 description: "理解大语言模型如何通过自监督的下一个 token 预测形成基座能力，以及数据来源、清洗去重、数据配比、分布式训练和评估中的关键权衡。"
-publishDate: "26 Jun 2026"
+publishDate: "26 Jun 2025"
 tags: ["llm"]
 ---
 
@@ -213,7 +213,7 @@ _图 2：原始网页、书籍、论文和代码经过解析、清洗、去重�
 
 ```json
 {
-	"id": "web_20260601_xxx",
+	"id": "web_20250601_xxx",
 	"source": "web",
 	"language": "zh",
 	"domain": "technical_blog",

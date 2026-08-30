@@ -1,7 +1,7 @@
 ---
 title: "LLM 02：数学与算法基础"
 description: "把语言表示、Attention、概率、损失函数、经典序列模型和训练优化串成一条清晰的学习主线。"
-publishDate: "21 Jun 2026"
+publishDate: "21 Jun 2025"
 tags: ["llm"]
 ---
 

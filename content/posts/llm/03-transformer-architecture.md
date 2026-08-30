@@ -1,7 +1,7 @@
 ---
 title: "LLM 03：Transformer 架构"
 description: "理解 Transformer 如何用 Self-Attention、Multi-Head Attention 和可堆叠的 Block 建模上下文，并通过 Causal Mask 支持自回归生成。"
-publishDate: "23 Jun 2026"
+publishDate: "23 Jun 2025"
 tags: ["llm"]
 ---
 

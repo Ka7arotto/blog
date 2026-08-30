@@ -1,7 +1,7 @@
 ---
 title: "LLM 14：微调与 LoRA"
 description: "理解垂直场景为什么需要微调，区分训练目标与参数更新方式，并掌握 Full Fine-tuning、LoRA、QLoRA 的原理、显存差异、训练配置和应用边界。"
-publishDate: "06 Jul 2026"
+publishDate: "06 Jul 2025"
 tags: ["llm"]
 ---
 

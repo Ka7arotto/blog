@@ -1,7 +1,7 @@
 ---
 title: "LLM 07：分布式训练"
 description: "理解大语言模型如何通过数据、张量、流水线、状态、专家和序列并行，在大规模 GPU 集群上稳定完成训练。"
-publishDate: "28 Jun 2026"
+publishDate: "28 Jun 2025"
 tags: ["llm"]
 ---
 

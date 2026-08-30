@@ -1,7 +1,7 @@
 ---
 title: "LLM 16：个性化与记忆"
 description: "理解无状态 LLM 如何通过外部记忆获得跨会话连续性，以及记忆的分层、写入、检索、更新、遗忘、安全与评测机制。"
-publishDate: "11 Jul 2026"
+publishDate: "11 Jul 2025"
 tags: ["llm"]
 ---
 
@@ -78,7 +78,7 @@ LLM 的一次推理近似无状态：它只能看到当前请求和当前上下�
 	"evidence_refs": ["trace_7821"],
 	"confidence": 1.0,
 	"importance": 0.8,
-	"valid_from": "2026-07-10",
+	"valid_from": "2025-07-10",
 	"valid_until": null,
 	"status": "active",
 	"sensitivity": "normal",

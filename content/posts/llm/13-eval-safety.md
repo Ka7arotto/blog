@@ -1,7 +1,7 @@
 ---
 title: "LLM 13：评测与安全"
 description: "理解如何从公开基准、业务评测、RAG、Agent、多模态和安全风险等层面评估大模型系统，并通过质量门禁、灰度监控与问题回流持续提高可靠性。"
-publishDate: "05 Jul 2026"
+publishDate: "05 Jul 2025"
 tags: ["llm"]
 ---
 
